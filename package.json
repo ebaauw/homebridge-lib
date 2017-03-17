@@ -1,0 +1,29 @@
+{
+  "name": "homebridge-lib",
+  "dependencies": {
+    "deferred": "^0.7.5"
+  },
+  "description": "Library for homebridge plug-ins",
+  "engines": {
+    "homebridge": "^0.4.16",
+    "node": "^6.9.4"
+  },
+  "keywords": [
+    "homebridge"
+  ],
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ebaauw/homebridge-lib.git"
+  },
+  "author": "Erik Baauw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ebaauw/homebridge-lib/issues"
+  },
+  "homepage": "https://github.com/ebaauw/homebridge-lib#readme"
+}
