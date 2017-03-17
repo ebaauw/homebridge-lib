@@ -77,16 +77,6 @@ By using a variable instead of a hard-coded constant, the heartrate can be chang
 
 ## `LibAccessory`
 
-```javascript
-class MyAccessory extends LibAccessory {
-  constructor(platform, context) {
-    super(platform, context);
-    // Initialisation of subclass.
-    this.on('', );
-  }
-}
-```
-
 ## `LibService`
 
 ## `LibCharacteristic`
@@ -114,22 +104,3 @@ module.exports = class MyPlatform extends LibPlatform {
 };
 
 ```
-
-
-
-
-`LibPlatform`
-accessoryList
-accessoryMap[id]
-
-`LibAccessory`
-accessoryList
-serviceMap[id]
-
-
-
-`LibService`
-characteristicList
-characteristicMap[id]
-
-`LibCharacteristic`
