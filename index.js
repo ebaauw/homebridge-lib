@@ -6,8 +6,9 @@
 'use strict';
 
 module.exports = {
-  LibPlatform: require('./lib/LibPlatform.js'),
-  LibAccessory: require('./lib/LibAccessory.js'),
-  LibService: require('./lib/LibService.js'),
-  LibCharacteristic: require('./lib/LibCharacteristic.js')
+  LibPlatform: require('./lib/LibPlatform'),
+  LibAccessory: require('./lib/LibAccessory'),
+  LibService: require('./lib/LibService'),
+  LibCharacteristic: require('./lib/LibCharacteristic'),
+  LibObject: require('./lib/LibObject')
 };
