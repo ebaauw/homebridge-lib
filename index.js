@@ -2,6 +2,8 @@
 //
 // Library for homebridge plug-ins.
 // Copyright © 2017 Erik Baauw. All rights reserved.
+//
+// See https://github.com/ebaauw/homebridge-lib/wiki.
 
 'use strict';
 

@@ -19,14 +19,6 @@ Technically, the homebridge-lib library is based on the following:
 
 The homebridge-lib library provides a number of abstract superclasses, that act as delegate for homebridge platform plugins and for HomeKit accessories, services, and characteristics.  A homebridge plugin based on homebridge-lib extends these classes, providing the device-specific logic.
 
-Class | Extends | Delegate for | HomeKit
------ | ------- | ------------ | -------
-`LibPlatform` | `LibObject` | -- | --
-`LibAccessory` | `LibObject` | `PlatformAccessory` | accessory
-`LibService` | `LibObject` | `Service` | service
-`LibCharacteristic` | `LibObject` | `Characteristic` | characteristic
-`LibObject` | `EventEmitter` | -- | --
-
 See the [Wiki](https://github.com/ebaauw/homebridge-lib/wiki) for more information.
 
 ## Installation
