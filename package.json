@@ -1,12 +1,12 @@
 {
   "name": "homebridge-lib",
   "dependencies": {
-    "deferred": "^0.7.5"
+    "deferred": "^0.7.8"
   },
   "description": "Library for homebridge plug-ins",
   "engines": {
-    "homebridge": "^0.4.16",
-    "node": "^6.9.4"
+    "homebridge": "^0.4.21",
+    "node": "^6.11.0"
   },
   "keywords": [
     "homebridge"
