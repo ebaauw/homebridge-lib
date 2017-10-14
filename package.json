@@ -1,17 +1,18 @@
 {
   "name": "homebridge-lib",
   "dependencies": {
-    "deferred": "^0.7.8"
+    "deferred": "^0.7.8",
+    "semver": "^5.4.1"
   },
   "description": "Library for homebridge plug-ins",
   "engines": {
-    "homebridge": "^0.4.21",
-    "node": "^6.11.0"
+    "homebridge": "^0.4.28",
+    "node": "^6.11.4"
   },
   "keywords": [
     "homebridge"
   ],
-  "version": "0.0.2-0",
+  "version": "0.0.2-1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
