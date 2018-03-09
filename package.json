@@ -10,11 +10,11 @@
   "main": "index.js",
   "engines": {
     "homebridge": "^0.4.38",
-    "node": "^8.9.4"
+    "node": "^8.10.0"
   },
   "dependencies": {
-    "deferred": "^0.7.8",
-    "semver": "^5.4.1"
+    "deferred": "^0.7.9",
+    "semver": "^5.5.0"
   },
   "devDependencies": {
     "standard": "*"
