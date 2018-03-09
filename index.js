@@ -5,7 +5,7 @@
 //
 // See https://github.com/ebaauw/homebridge-lib/wiki.
 
-'use strict';
+'use strict'
 
 module.exports = {
   LibPlatform: require('./lib/LibPlatform'),
@@ -13,4 +13,4 @@ module.exports = {
   LibService: require('./lib/LibService'),
   LibCharacteristic: require('./lib/LibCharacteristic'),
   LibObject: require('./lib/LibObject')
-};
+}
