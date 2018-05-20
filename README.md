@@ -3,7 +3,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Utility Library for Homebridge Plugins
-Copyright © 2017 Erik Baauw. All rights reserved.
+Copyright © 2017,2018 Erik Baauw. All rights reserved.
 
 While developing a number of [homebridge](https://github.com/nfarina/homebridge) plugins, I find myself duplicating a lot of code.  The idea behind this utility library is to ease developing and maintaining homebridge plugins by separating this generic code, dealing with [HomeKit](http://www.apple.com/ios/home/) and homebridge, from the specific code, dealing with the actual devices being exposed to HomeKit.
 
