@@ -10,7 +10,7 @@
   "main": "index.js",
   "engines": {
     "homebridge": "^0.4.43",
-    "node": "^8.11.2"
+    "node": "^8.11.3"
   },
   "dependencies": {
     "debug": "^3.1.0",
