@@ -19,6 +19,5 @@ module.exports = {
   MyHomeKitTypes: require('./lib/MyHomeKitTypes'),
   OptionParser: require('./lib/OptionParser'),
   RestClient: require('./lib/RestClient'),
-  UpnpMonitor: require('./lib/UpnpMonitor'),
-  WsMonitor: require('./lib/WsMonitor')
+  UpnpMonitor: require('./lib/UpnpMonitor')
 }
