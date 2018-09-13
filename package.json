@@ -9,17 +9,14 @@
   ],
   "main": "index.js",
   "engines": {
-    "homebridge": "^0.4.44",
-    "node": "^8.11.4"
+    "homebridge": "^0.4.45",
+    "node": "^8.12.0"
   },
   "dependencies": {
-    "debug": "^3.1.0",
+    "debug": "^4.0.1",
     "fakegato-history": "^0.5.2",
     "request": "^2.88.0",
-    "semver": "^5.5.0"
-  },
-  "devDependencies": {
-    "standard": "*"
+    "semver": "^5.5.1"
   },
   "scripts": {
     "test": "standard && echo \"Error: no test specified\" && exit 1"
