@@ -9,6 +9,7 @@ While developing a number of [homebridge](https://github.com/nfarina/homebridge)
 
 The homebridge-lib library provides the following functionality:
 - Saving and restoring accessories from persistent storage between homebridge sessions (using the homebridge v2 dynamic platform model);
+- History for [Eve](https://www.evehome.com/en/eve-app);
 - Universal Plug & Play (UPnP) device discovery;
 - Setting up a heartbeat for device polling;
 - Logging and error handling;
@@ -28,3 +29,6 @@ See the [Wiki](https://github.com/ebaauw/homebridge-lib/wiki) for more informati
 
 ## Installation
 This library is _not_ a homebridge plugin and should not be installed manually.  Instead, homebridge plugins using this library should list it as a dependency in their `package.json`.  This way, `npm` installs homebridge-lib automatically when installing the actual plugin.
+
+## Credits
+The logic for handling [Eve](https://www.evehome.com/en/eve-app) history was copied from Simone Tisa's [fakegato-history](https://github.com/simont77/fakegato-history) repository, copyright © 2017 simont77.
