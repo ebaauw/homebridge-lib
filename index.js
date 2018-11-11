@@ -1,9 +1,7 @@
 // homebridge-lib/index.js
 //
-// Library for homebridge plug-ins.
+// Library for Homebridge plugins.
 // Copyright © 2017,2018 Erik Baauw. All rights reserved.
-//
-// See https://github.com/ebaauw/homebridge-lib/wiki.
 
 'use strict'
 
