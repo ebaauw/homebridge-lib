@@ -23,6 +23,8 @@
     "node": "^10.15.0"
   },
   "dependencies": {
+    "bonjour-hap": "~3.5.1",
+    "chalk": "~2.4.1",
     "debug": "~4.1.1",
     "moment": "~2.23.0",
     "request": "~2.88.0",
