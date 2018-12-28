@@ -65,30 +65,30 @@ class Main extends homebridgeLib.CommandLineInterface {
       const jsonFormatter = new homebridgeLib.JsonFormatter(
         this.options.mode === 'service' ? { noWhiteSpace: true } : {}
       )
-      const upnpMonitor = new homebridgeLib.UpnpMonitor(this.upnp)
+      const unpnClient = new homebridgeLib.UpnpClient(this.upnp)
       process.on('SIGINT', () => { this.exit('SIGINT') })
       process.on('SIGTERM', () => { this.exit('SIGTERM') })
-      upnpMonitor.on('listening', (host) => { this.log('listening on %s', host) })
-      upnpMonitor.on('deviceAlive', (address, obj, message) => {
+      unpnClient.on('listening', (host) => { this.log('listening on %s', host) })
+      unpnClient.on('deviceAlive', (address, obj, message) => {
         if (!this.options.raw) {
           message = jsonFormatter.stringify(obj)
         }
         this.print('%s: %s', address, message)
       })
-      upnpMonitor.on('searching', (host) => { this.log('searching on %s', host) })
-      upnpMonitor.on('searchDone', () => { this.log('search done') })
-      upnpMonitor.on('deviceFound', (address, obj, message) => {
+      unpnClient.on('searching', (host) => { this.log('searching on %s', host) })
+      unpnClient.on('searchDone', () => { this.log('search done') })
+      unpnClient.on('deviceFound', (address, obj, message) => {
         if (!this.options.raw) {
           message = jsonFormatter.stringify(obj)
         }
         this.print('%s: %s', address, message)
       })
-      upnpMonitor.on('error', (err) => { this.error(err) })
+      unpnClient.on('error', (err) => { this.error(err) })
       if (this.options.mode) {
         this.setOptions({ mode: this.options.mode })
-        upnpMonitor.listen()
+        unpnClient.listen()
       } else {
-        upnpMonitor.search()
+        unpnClient.search()
       }
     } catch (err) {
       this.fatal(err)
