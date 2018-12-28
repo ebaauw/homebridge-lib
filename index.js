@@ -7,7 +7,7 @@
 
 /** Entry point for `homebridgeLib`, see the {@tutorial homebridgeLib} tutorial.
   *
-  * @module homebridge-lib
+  * @module homebridgeLib
   * @property {Class} Platform - Abstract superclass for a Homebridge dynamic platform plugin.<br>
   * See {@link Platform}.
   * @property {Class} AccessoryDelegate - Abstract superclass for a HomeKit accessory delegate.<br>
