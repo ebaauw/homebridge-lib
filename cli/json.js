@@ -43,7 +43,7 @@ The following parameters modify this behaviour:
   ${b('-c')} ${u('string')}   Read JSON from ${u('string')} instead of from stdin.
   ${u('file')}        Read JSON from ${u('file')} instead of from stdin.`
 
-class Main extends homebridgeLib.CommandLineInterface {
+class Main extends homebridgeLib.CommandLineTool {
   constructor () {
     super()
     this.usage = usage

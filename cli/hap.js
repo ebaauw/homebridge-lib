@@ -29,7 +29,7 @@ Parameters:
   ${b('-s')}          Do not output timestamps (useful when running as service).
   ${b('-t')} ${u('timeout')}  Search for ${u('timeout')} seconds instead of default ${b('5')}.`
 
-class Main extends homebridgeLib.CommandLineInterface {
+class Main extends homebridgeLib.CommandLineTool {
   constructor () {
     super()
     this.usage = usage
