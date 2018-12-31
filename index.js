@@ -5,9 +5,9 @@
 
 'use strict'
 
-/** Entry point for `homebridgeLib`, see the {@tutorial homebridgeLib} tutorial.
+/** Entry point for `homebridge-lib`, see the {@tutorial homebridge-lib} tutorial.
   *
-  * @module homebridgeLib
+  * @module homebridge-lib
   * @property {Class} Platform - Abstract superclass for a Homebridge dynamic platform plugin.<br>
   * See {@link Platform}.
   * @property {Class} AccessoryDelegate - Abstract superclass for a HomeKit accessory delegate.<br>
@@ -19,14 +19,6 @@
   * @property {Class} Delegate - Abstract superclass for `Platform`,
   * `AccessoryDelegate`, `ServiceDelegate`, and `CharacteristicDelegate`.<br>
   * See {@link Delegate}.
-  * @property {Class} hap - HomeKit Accessory Protocol.<br>
-  * See {@link hap}.
-  * @property {Class} eve - Custom HomeKit services and characteristic used by
-  * the [Eve](https://www.evehome.com/en/eve-app) app.<br>
-  * See {@link eve}.
-  * @property {Class} hap - Custom HomeKit services and characteristics used by
-  * [my](https://github.com/ebaauw) plugins.<br>
-  * See {@link my}.
   * @property {Class} CommandLineParser - Parser and validator for command-line
   * arguments.<br>
   * See {@link CommandLineParser}.
@@ -48,10 +40,6 @@ class homebridgeLib {
   static get ServiceDelegate () { return require('./lib/ServiceDelegate') }
   static get CharacteristicDelegate () { return require('./lib/CharacteristicDelegate') }
   static get Delegate () { return require('./lib/Delegate') }
-
-  static get hap () { return require('./lib/hap') }
-  static get eve () { return require('./lib/eve') }
-  static get my () { return require('./lib/my') }
 
   static get CommandLineParser () { return require('./lib/CommandLineParser') }
   static get CommandLineTool () { return require('./lib/CommandLineTool') }
