@@ -22,7 +22,7 @@ Tool    | Description
 ------- | -----------
 `hap`   | Logger for HomeKit accessory announcements.
 `json`  | JSON formatter.
-`upnp`  | Logger for UPnP device announcements.
+`upnp`  | UPnP tool.
 
 Each command-line tool takes a `-h` or `--help` argument to provide a brief overview of its functionality and command-line arguments.
 
