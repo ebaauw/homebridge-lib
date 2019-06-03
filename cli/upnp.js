@@ -33,7 +33,7 @@ Parameters:
   ${b('-a')}, ${b('--all')}
   Short for ${b('-c ssdp:all')}.
 
-  ${b('-c')} ${u('class')}, ${b('-class')} ${u('class')}
+  ${b('-c')} ${u('class')}, ${b('--class=')}${u('class')}
   Search for ${u('class')} instead of default ${b('ssdp:rootdevice')}.
 
   ${b('-d')}, ${b('--daemon')}
@@ -48,7 +48,7 @@ Parameters:
   ${b('-s')}, ${b('--service')}
   Run as daemon.  Listen for UPnP alive broadcasts instead of searching.
 
-  ${b('-t')} ${u('timeout')}, ${b('-timeout')} ${u('timeout')}
+  ${b('-t')} ${u('timeout')}, ${b('--timeout=')}${u('timeout')}
   Search for ${u('timeout')} seconds instead of default ${b('5')}.
 
   ${b('-z')}, ${b('--ZonePlayer')}
