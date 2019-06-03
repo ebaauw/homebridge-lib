@@ -18,8 +18,8 @@ const u = chalk.underline
 const usage = `${b('upnp')} [${b('-hVadnrsz')}] [${b('-c')} ${u('class')}] [${b('-t')} ${u('timeout')}]`
 const help = `UPnP tool.
 
-Search for UPnP devices and print found devices as JSON on stdout.
-When running as daemon or service, log UPnP alive broadcasts as JSON to stdout.
+Search for UPnP devices and print found devices as JSON.
+When running as daemon or service, log UPnP alive broadcasts as JSON.
 
 Usage: ${usage}
 
@@ -43,7 +43,7 @@ Parameters:
   Do not include spaces nor newlines in JSON output.
 
   ${b('-r')}, ${b('--raw')}
-  Do not parse messages, output raw message data.
+  Do not parse messages, output raw message data instead of JSON.
 
   ${b('-s')}, ${b('--service')}
   Run as daemon.  Listen for UPnP alive broadcasts instead of searching.
