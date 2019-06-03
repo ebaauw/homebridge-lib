@@ -15,27 +15,52 @@ const chalk = require('chalk')
 
 const b = chalk.bold
 const u = chalk.underline
-const usage = `${b('upnp')} [${b('-hValrs')}] [${b('-c')} ${u('class')}] [${b('-t')} ${u('timeout')}]`
-const help = `Logger for UPnP device announcements.
+const usage = `${b('upnp')} [${b('-hVadnrsz')}] [${b('-c')} ${u('class')}] [${b('-t')} ${u('timeout')}]`
+const help = `UPnP tool.
+
+Search for UPnP devices and print found devices as JSON on stdout.
+When running as daemon or service, log UPnP alive broadcasts as JSON to stdout.
 
 Usage: ${usage}
 
-Search for UPnP devices.
 Parameters:
-  ${b('-h')}          Print this help and exit.
-  ${b('-V')}          Print version and exit.
-  ${b('-a')}          Short for ${b('-c ssdp:all')}.
-  ${b('-c')} ${u('class')}    Search for ${u('class')} instead of default ${b('ssdp:rootdevice')}.
-  ${b('-l')}          Listen for UPnP alive broadcasts instead of searching.
-  ${b('-r')}          Do not parse messages, output raw message data.
-  ${b('-s')}          Do not output timestamps (useful when running as service).
-  ${b('-t')} ${u('timeout')}  Search for ${u('timeout')} seconds instead of default ${b('5')}.`
+  ${b('-h')}, ${b('--help')}
+  Print this help and exit.
+
+  ${b('-V')}, ${b('--version')}
+  Print version and exit.
+
+  ${b('-a')}, ${b('--all')}
+  Short for ${b('-c ssdp:all')}.
+
+  ${b('-c')} ${u('class')}, ${b('-class')} ${u('class')}
+  Search for ${u('class')} instead of default ${b('ssdp:rootdevice')}.
+
+  ${b('-d')}, ${b('--daemon')}
+  Run as daemon.  Listen for UPnP alive broadcasts instead of searching.
+
+  ${b('-n')}, ${b('--noWhiteSpace')}
+  Do not include spaces nor newlines in JSON output.
+
+  ${b('-r')}, ${b('--raw')}
+  Do not parse messages, output raw message data.
+
+  ${b('-s')}, ${b('--service')}
+  Run as daemon.  Listen for UPnP alive broadcasts instead of searching.
+
+  ${b('-t')} ${u('timeout')}, ${b('-timeout')} ${u('timeout')}
+  Search for ${u('timeout')} seconds instead of default ${b('5')}.
+
+  ${b('-z')}, ${b('--ZonePlayer')}
+  Short for ${b('-c urn:schemas-upnp-org:device:ZonePlayer:1')}.`
 
 class Main extends homebridgeLib.CommandLineTool {
   constructor () {
     super()
     this.usage = usage
-    this.options = {}
+    this.options = {
+      noWhiteSpace: false
+    }
     this.upnp = {}
   }
 
@@ -45,11 +70,15 @@ class Main extends homebridgeLib.CommandLineTool {
     parser.version('V', 'version')
     parser.flag('a', 'all', (key) => { this.upnp.class = 'ssdp:all' })
     parser.option('c', 'class', (value, key) => { this.upnp.class = value })
-    parser.flag('l', 'listen', (key) => { this.options.mode = 'daemon' })
+    parser.flag('d', 'daemon', (key) => { this.options.mode = 'daemon' })
+    parser.flag('n', 'noWhiteSpace', () => { this.options.noWhiteSpace = true })
     parser.flag('r', 'raw', (key) => { this.options.raw = true })
     parser.flag('s', 'service', (key) => { this.options.mode = 'service' })
     parser.option('t', 'timeout', (value, key) => {
       this.upnp.timeout = homebridgeLib.OptionParser.toInt(value, 1, 60, true)
+    })
+    parser.flag('z', 'ZonePlayer', (key) => {
+      this.upnp.class = 'urn:schemas-upnp-org:device:ZonePlayer:1'
     })
     parser.parse()
   }
@@ -62,9 +91,9 @@ class Main extends homebridgeLib.CommandLineTool {
   main () {
     try {
       this.parseArguments()
-      const jsonFormatter = new homebridgeLib.JsonFormatter(
-        this.options.mode === 'service' ? { noWhiteSpace: true } : {}
-      )
+      const jsonFormatter = new homebridgeLib.JsonFormatter({
+        noWhiteSpace: this.options.noWhiteSpace
+      })
       const unpnClient = new homebridgeLib.UpnpClient(this.upnp)
       process.on('SIGINT', () => { this.exit('SIGINT') })
       process.on('SIGTERM', () => { this.exit('SIGTERM') })
@@ -73,7 +102,7 @@ class Main extends homebridgeLib.CommandLineTool {
         if (!this.options.raw) {
           message = jsonFormatter.stringify(obj)
         }
-        this.print('%s: %s', address, message)
+        this.log('%s: %s', address, message)
       })
       unpnClient.on('searching', (host) => { this.log('searching on %s', host) })
       unpnClient.on('searchDone', () => { this.log('search done') })
