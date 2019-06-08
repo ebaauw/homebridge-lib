@@ -1,5 +1,5 @@
 # homebridge-lib
-[![npm](https://img.shields.io/npm/dt/homebridge-lib.svg)](https://www.npmjs.com/package/homebridge-lib) [![npm](https://img.shields.io/npm/v/homebridge-lib.svg)](https://www.npmjs.com/package/homebridge-lib)
+[![npm](https://img.shields.io/npm/dt/hblib.svg)](https://www.npmjs.com/package/hblib) [![npm](https://img.shields.io/npm/v/homebridge-lib.svg)](https://www.npmjs.com/package/hblib)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Library for Homebridge Plugins
@@ -27,11 +27,9 @@ Tool    | Description
 Each command-line tool takes a `-h` or `--help` argument to provide a brief overview of its functionality and command-line arguments.
 
 ### Installation
-This library is _not_ a Homebridge plugin and should not need to be installed manually.  Instead, Homebridge plugins using this library should list it as a dependency in their `package.json`.  This way, `npm` installs `homebridge-lib` automatically when installing the actual plugin.
-
-To install the command-line tools standalone, without installing a Homebridge plugin, use:
+To install `homebridge-lib`, use:
 ```
-$ sudo npm -g i homebridge-lib
+$ sudo npm -g i hblib
 ```
 
 ### Credits
