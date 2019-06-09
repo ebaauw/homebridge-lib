@@ -5,6 +5,8 @@
 
 'use strict'
 
+const packageJson = require('./package.json')
+
 /** Entry point for `homebridge-lib`, see the {@tutorial homebridge-lib} tutorial.
   *
   * @module homebridge-lib
@@ -48,7 +50,7 @@ class homebridgeLib {
   static get TypeParser () { return require('./lib/TypeParser') }
   static get UpnpClient () { return require('./lib/UpnpClient') }
 
-  // Deprecated
+  // To be deprecated?
   static get CustomHomeKitTypes () { return require('./lib/CustomHomeKitTypes') }
   static get EveHomeKitTypes () { return require('./lib/EveHomeKitTypes') }
   static get MyHomeKitTypes () { return require('./lib/MyHomeKitTypes') }
@@ -56,3 +58,15 @@ class homebridgeLib {
 }
 
 module.exports = homebridgeLib
+
+// Allow homebridge-lib to be loaded as fake plugin by homebridge.
+if (
+  require.main != null && require.main.filename != null &&
+  require.main.filename.split('/').pop() === 'homebridge' &&
+  module.parent.filename.split('/').pop() === 'plugin.js'
+) {
+  module.exports = function (homebridge) {
+    const Platform = homebridgeLib.Platform
+    Platform.loadPlatform(homebridge, packageJson, 'Lib', Platform)
+  }
+}
