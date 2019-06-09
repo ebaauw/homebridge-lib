@@ -66,6 +66,7 @@ if (
   module.parent.filename.split('/').pop() === 'plugin.js'
 ) {
   module.exports = function (homebridge) {
+    module.exports = homebridgeLib
     const Platform = homebridgeLib.Platform
     Platform.loadPlatform(homebridge, packageJson, 'Lib', Platform)
   }
