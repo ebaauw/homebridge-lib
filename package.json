@@ -1,9 +1,9 @@
 {
-  "name": "hblib",
+  "name": "homebridge-lib",
   "description": "Library for homebridge plug-ins",
   "author": "Erik Baauw",
   "license": "Apache-2.0",
-  "version": "0.0.0",
+  "version": "4.2.5",
   "keywords": [
     "homebridge"
   ],
