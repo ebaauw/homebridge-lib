@@ -20,15 +20,16 @@
     "upnp": "cli/upnp.js"
   },
   "engines": {
-    "homebridge": "0.4.50",
-    "node": "10.16.0"
+    "homebridge": "^0.4.50",
+    "node": "^10.16.0"
   },
   "dependencies": {
     "bonjour-hap": "~3.5.4",
     "chalk": "~2.4.2",
     "debug": "~4.1.1",
     "moment": "~2.24.0",
-    "request": "~2.88.0"
+    "request": "~2.88.0",
+    "semver": "~6.1.1"
   },
   "scripts": {
     "prepare": "standard && mocha && rm -rf out && jsdoc -c jsdoc.json",
