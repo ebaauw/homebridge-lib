@@ -46,28 +46,35 @@ class homebridgeLib {
   static get CommandLineParser () { return require('./lib/CommandLineParser') }
   static get CommandLineTool () { return require('./lib/CommandLineTool') }
   static get JsonFormatter () { return require('./lib/JsonFormatter') }
+  static get OptionParser () { return require('./lib/OptionParser') }
   static get RestClient () { return require('./lib/RestClient') }
   static get TypeParser () { return require('./lib/TypeParser') }
   static get UpnpClient () { return require('./lib/UpnpClient') }
 
-  // To be deprecated?
   static get CustomHomeKitTypes () { return require('./lib/CustomHomeKitTypes') }
   static get EveHomeKitTypes () { return require('./lib/EveHomeKitTypes') }
   static get MyHomeKitTypes () { return require('./lib/MyHomeKitTypes') }
-  static get OptionParser () { return require('./lib/OptionParser') }
 }
 
 module.exports = homebridgeLib
 
-// Allow homebridge-lib to be loaded as fake plugin by homebridge.
+// Allow homebridge-lib to be loaded by homebridge as plugin.
+let loadedAsPlugin = false
 if (
   require.main != null && require.main.filename != null &&
-  require.main.filename.split('/').pop() === 'homebridge' &&
-  module.parent.filename.split('/').pop() === 'plugin.js'
+  require.main.filename.split('/').pop() === 'homebridge'
 ) {
-  module.exports = function (homebridge) {
-    module.exports = homebridgeLib
-    const Platform = homebridgeLib.Platform
-    Platform.loadPlatform(homebridge, packageJson, 'Lib', Platform)
+  if (module.parent.filename.split('/').pop() === 'plugin.js') {
+    module.exports = function (homebridge) {
+      module.exports = homebridgeLib
+      loadedAsPlugin = true
+      const Platform = homebridgeLib.Platform
+      Platform.loadPlatform(homebridge, packageJson, 'Lib', Platform)
+    }
+  } else {
+    if (!loadedAsPlugin) {
+      // Force re-load of homebridge-lib.
+      delete require.cache[require.resolve('homebridge-lib')]
+    }
   }
 }
