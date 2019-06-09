@@ -1,5 +1,5 @@
 # homebridge-lib
-[![npm](https://img.shields.io/npm/dt/hblib.svg)](https://www.npmjs.com/package/hblib) [![npm](https://img.shields.io/npm/v/hblib.svg)](https://www.npmjs.com/package/hblib)
+[![npm](https://img.shields.io/npm/dt/hblib.svg)](https://www.npmjs.com/package/hblib) [![npm](https://img.shields.io/npm/v/homebridge-lib.svg)](https://www.npmjs.com/package/hblib)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Library for Homebridge Plugins
