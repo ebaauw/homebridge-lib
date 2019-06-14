@@ -5,6 +5,7 @@
 
 'use strict'
 
+const path = require('path')
 const packageJson = require('./package.json')
 
 /** Entry point for `homebridge-lib`, see the {@tutorial homebridge-lib} tutorial.
@@ -62,9 +63,9 @@ module.exports = homebridgeLib
 let loadedAsPlugin = false
 if (
   require.main != null && require.main.filename != null &&
-  require.main.filename.split('/').pop() === 'homebridge'
+  path.basename(require.main.filename) === 'homebridge'
 ) {
-  if (module.parent.filename.split('/').pop() === 'plugin.js') {
+  if (path.basename(module.parent.filename) === 'plugin.js') {
     module.exports = function (homebridge) {
       module.exports = homebridgeLib
       loadedAsPlugin = true
