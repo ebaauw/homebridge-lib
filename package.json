@@ -29,7 +29,7 @@
     "debug": "~4.1.1",
     "moment": "~2.24.0",
     "request": "~2.88.0",
-    "semver": "~6.1.1"
+    "semver": "~6.2.0"
   },
   "scripts": {
     "prepare": "standard && mocha && rm -rf out && jsdoc -c jsdoc.json",
