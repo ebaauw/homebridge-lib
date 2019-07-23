@@ -27,11 +27,14 @@ Tool    | Description
 Each command-line tool takes a `-h` or `--help` argument to provide a brief overview of its functionality and command-line arguments.
 
 ### Installation
-Plugins based on `homebridge-lib` define this library as peer dependency, rather than a regular dependency.  This way, `homebridge-lib` is loaded only once and shared across all plugins, similar to Homebridge itself.  Note that as `homebridge-lib` isn't included in the plugin package, it must be installed separately, by issuing:
+This library is _not_ a Homebridge plugin and should not need to be installed manually.
+Instead, Homebridge plugins using this library should list it as a dependency in their `package.json`.
+This way, `npm` installs `homebridge-lib` automatically when installing the actual plugin.
+
+To install the command-line tools standalone, without installing a Homebridge plugin, use:
 ```
 $ sudo npm -g i homebridge-lib
 ```
-To allow `homebridge-lib` to be updated by [`homebridge-config-ui-x`](https://github.com/oznu/homebridge-config-ui-x), it presents itself as a separate plugin to Homebridge.  As it doesn't expose any HomeKit accessories, there is no configuration needed.  It does need to be loaded, however.  If you use the `plugins` key in `config.json` to specify what plugins to load, make sure to include `homebridge-lib`.
 
 ### Credits
 The logic for handling [Eve](https://www.evehome.com/en/eve-app) history was copied from Simone Tisa's [`fakegato-history`](https://github.com/simont77/fakegato-history) repository, copyright © 2017 simont77.
