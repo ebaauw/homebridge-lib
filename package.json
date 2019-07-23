@@ -1,11 +1,12 @@
 {
   "name": "homebridge-lib",
-  "description": "Library for homebridge plug-ins",
+  "description": "Library for homebridge plugins",
   "author": "Erik Baauw",
   "license": "Apache-2.0",
   "version": "4.3.0",
   "keywords": [
-    "homekit"
+    "homekit",
+    "homebridge"
   ],
   "main": "index.js",
   "files": [
@@ -28,7 +29,7 @@
     "debug": "~4.1.1",
     "moment": "~2.24.0",
     "request": "~2.88.0",
-    "semver": "~6.2.0"
+    "semver": "~6.3.0"
   },
   "scripts": {
     "prepare": "standard && mocha && rm -rf out && jsdoc -c jsdoc.json",
