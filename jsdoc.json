@@ -2,7 +2,9 @@
   "plugins": ["plugins/markdown"],
   "rescurseDepth": 10,
   "source": {
-    "include": ["README.md", "index.js", "lib"]
+    "include": [
+      "README.md", "index.js", "lib", "doc"
+    ]
   },
   "opts": {
     "tutorials": "doc"
