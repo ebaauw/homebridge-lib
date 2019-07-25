@@ -10,7 +10,7 @@
 // Following "code" is just for generating documentation references for the
 // hap-nodejs classes used by homebridge-lib.
 
-/** Class for a HomeKit accessory.
+/** HomeKit accessory.
   *
   * From {@link module:hap-nodejs hap-nodejs}.
   *
@@ -24,7 +24,7 @@
   *
   * @class
   * @hideconstructor
-  * @see https://github.com/KhaosT/HAP-NodeJS/lib/Accessory.js
+  * @see https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/Accessory.js
   */
 class Accessory {
   /** Homekit accessory category.
@@ -101,7 +101,7 @@ class Accessory {
   * @class
   * @abstract
   * @hideconstructor
-  * @see https://github.com/KhaosT/HAP-NodeJS/lib/Service.js
+  * @see https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/Service.js
   */
 class Service {}
 
@@ -127,7 +127,7 @@ class Service {}
   * @class
   * @abstract
   * @hideconstructor
-  * @see https://github.com/KhaosT/HAP-NodeJS/lib/Characteristic.js
+  * @see https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/Characteristic.js
   */
 class Characteristic {
   /** HomeKit characteristic format.
@@ -139,7 +139,7 @@ class Characteristic {
 
   /** Valid HomeKit characteristic formats.
     *
-    * Plugins access these through {@link Delegate#Characteristic}
+    * Plugins access these through {@link Delegate#Characteristic}.
     *
     * @type {Object}
     * @property {Format} BOOL - Boolean.
@@ -165,7 +165,7 @@ class Characteristic {
 
   /** Valid HomeKit characteristic permissions.
     *
-    * Plugins access these through {@link Delegate#Characteristic}
+    * Plugins access these through {@link Delegate#Characteristic}.
     *
     * @type {Object}
     * @property {Perm} PAIRED_READ - Paired Read.
@@ -216,7 +216,7 @@ class Characteristic {
 
   /** Standard HomeKit characteristic units.
     *
-    * Plugins access these through {@link Delegate#Characteristic}
+    * Plugins access these through {@link Delegate#Characteristic}.
     *
     * @type {Object}
     * @property {Unit} CELSIUS - Degrees Celsius
@@ -228,10 +228,11 @@ class Characteristic {
     static get Units () {}
 }
 
-/** HomeKit Accessory Protocol.
+/** NodeJS implementation of a HomeKit Accessory Server.
   *
-  * HAP-NodeJS by Khaos Tian is a NodeJS implementation of Apple's
-  * HomeKit Accessory Protocol (HAP).
+  * HAP-NodeJS by Khaos Tian is a NodeJS implementation of a HomeKit accessory.
+  * It implements a web server that follows the HomeKit Accessory Protocol
+  * (HAP).
   * This protocol defines the communication between HomeKit and HomeKit
   * accessories.
   * Note that HomeKit apps communicate with HomeKit in a different way,
@@ -241,238 +242,269 @@ class Characteristic {
   *
   * `homebridge-lib` handles most of the interaction with homebridge and
   * HAP-NodeJS.
-  * Plugins do need to be aware of the following HAP-NodeJS classes:
+  * Plugins do need to be aware of the HAP-NodeJS elements below.
   *
   * @module hap-nodejs
-  * @property {Class} Accessory - Class for a HomeKit accessory.
-  * <br>See {@link Accessory}.
-  * @property {Class} Service - Abstract superclass for a HomeKit service.
-  * <br>See {@link Service}.
-  * @property {Object} Services - {@link Service} subclasses
-  * for standard HomeKit service types.
-  * @property {Class} Services.AccessoryInformation
-  * @property {Class} Services.AirPurifier
-  * @property {Class} Services.AirQualitySensor
-  * @property {Class} Services.BatteryService
-  * @property {Class} Services.BridgeConfiguration
-  * @property {Class} Services.BridgingState
-  * @property {Class} Services.CameraControl
-  * @property {Class} Services.CameraRTPStreamManagement
-  * @property {Class} Services.CarbonDioxideSensor
-  * @property {Class} Services.CarbonMonoxideSensor
-  * @property {Class} Services.ContactSensor
-  * @property {Class} Services.Door
-  * @property {Class} Services.Doorbell
-  * @property {Class} Services.Fan
-  * @property {Class} Services.Fanv2
-  * @property {Class} Services.Faucet
-  * @property {Class} Services.FilterMaintenance
-  * @property {Class} Services.GarageDoorOpener
-  * @property {Class} Services.HeaterCooler
-  * @property {Class} Services.HumidifierDehumidifier
-  * @property {Class} Services.HumiditySensor
-  * @property {Class} Services.InputSource
-  * @property {Class} Services.IrrigationSystem
-  * @property {Class} Services.LeakSensor
-  * @property {Class} Services.LightSensor
-  * @property {Class} Services.Lightbulb
-  * @property {Class} Services.LockManagement
-  * @property {Class} Services.LockMechanism
-  * @property {Class} Services.Microphone
-  * @property {Class} Services.MotionSensor
-  * @property {Class} Services.OccupancySensor
-  * @property {Class} Services.Outlet
-  * @property {Class} Services.Pairing
-  * @property {Class} Services.ProtocolInformation
-  * @property {Class} Services.Relay
-  * @property {Class} Services.SecuritySystem
-  * @property {Class} Services.ServiceLabel
-  * @property {Class} Services.Slat
-  * @property {Class} Services.SmokeSensor
-  * @property {Class} Services.Speaker
-  * @property {Class} Services.StatefulProgrammableSwitch
-  * @property {Class} Services.StatelessProgrammableSwitch
-  * @property {Class} Services.Switch
-  * @property {Class} Services.Television
-  * @property {Class} Services.TelevisionSpeaker
-  * @property {Class} Services.TemperatureSensor
-  * @property {Class} Services.Thermostat
-  * @property {Class} Services.TimeInformation
-  * @property {Class} Services.TunneledBTLEAccessoryService
-  * @property {Class} Services.Valve
-  * @property {Class} Services.Window
-  * @property {Class} Services.WindowCovering
-  * @property {Class} Characteristic - Abstract superclass for a HomeKit
-  * characteristic.
-  * <br>See {@link Characteristic}
-  * @property {Object} Characteristics - {@link Characteristic} subclasses for
-  * standard HomeKit characteristic types.
-  * @property {Class} Characteristics.AccessoryFlags
-  * @property {Class} Characteristics.AccessoryIdentifier
-  * @property {Class} Characteristics.Active
-  * @property {Class} Characteristics.ActiveIdentifier
-  * @property {Class} Characteristics.AdministratorOnlyAccess
-  * @property {Class} Characteristics.AirParticulateDensity
-  * @property {Class} Characteristics.AirParticulateSize
-  * @property {Class} Characteristics.AirQuality
-  * @property {Class} Characteristics.AppMatchingIdentifier
-  * @property {Class} Characteristics.AudioFeedback
-  * @property {Class} Characteristics.BatteryLevel
-  * @property {Class} Characteristics.Brightness
-  * @property {Class} Characteristics.CarbonDioxideDetected
-  * @property {Class} Characteristics.CarbonDioxideLevel
-  * @property {Class} Characteristics.CarbonDioxidePeakLevel
-  * @property {Class} Characteristics.CarbonMonoxideDetected
-  * @property {Class} Characteristics.CarbonMonoxideLevel
-  * @property {Class} Characteristics.CarbonMonoxidePeakLevel
-  * @property {Class} Characteristics.Category
-  * @property {Class} Characteristics.ChargingState
-  * @property {Class} Characteristics.ClosedCaptions
-  * @property {Class} Characteristics.ColorTemperature
-  * @property {Class} Characteristics.ConfigureBridgedAccessory
-  * @property {Class} Characteristics.ConfigureBridgedAccessoryStatus
-  * @property {Class} Characteristics.ConfiguredName
-  * @property {Class} Characteristics.ContactSensorState
-  * @property {Class} Characteristics.CoolingThresholdTemperature
-  * @property {Class} Characteristics.CurrentAirPurifierState
-  * @property {Class} Characteristics.CurrentAmbientLightLevel
-  * @property {Class} Characteristics.CurrentDoorState
-  * @property {Class} Characteristics.CurrentFanState
-  * @property {Class} Characteristics.CurrentHeaterCoolerState
-  * @property {Class} Characteristics.CurrentHeatingCoolingState
-  * @property {Class} Characteristics.CurrentHorizontalTiltAngle
-  * @property {Class} Characteristics.CurrentHumidifierDehumidifierState
-  * @property {Class} Characteristics.CurrentMediaState
-  * @property {Class} Characteristics.CurrentPosition
-  * @property {Class} Characteristics.CurrentRelativeHumidity
-  * @property {Class} Characteristics.CurrentSlatState
-  * @property {Class} Characteristics.CurrentTemperature
-  * @property {Class} Characteristics.CurrentTiltAngle
-  * @property {Class} Characteristics.CurrentTime
-  * @property {Class} Characteristics.CurrentVerticalTiltAngle
-  * @property {Class} Characteristics.CurrentVisibilityState
-  * @property {Class} Characteristics.DayoftheWeek
-  * @property {Class} Characteristics.DigitalZoom
-  * @property {Class} Characteristics.DiscoverBridgedAccessories
-  * @property {Class} Characteristics.DiscoveredBridgedAccessories
-  * @property {Class} Characteristics.DisplayOrder
-  * @property {Class} Characteristics.FilterChangeIndication
-  * @property {Class} Characteristics.FilterLifeLevel
-  * @property {Class} Characteristics.FirmwareRevision
-  * @property {Class} Characteristics.HardwareRevision
-  * @property {Class} Characteristics.HeatingThresholdTemperature
-  * @property {Class} Characteristics.HoldPosition
-  * @property {Class} Characteristics.Hue
-  * @property {Class} Characteristics.Identifier
-  * @property {Class} Characteristics.Identify
-  * @property {Class} Characteristics.ImageMirroring
-  * @property {Class} Characteristics.ImageRotation
-  * @property {Class} Characteristics.InUse
-  * @property {Class} Characteristics.InputDeviceType
-  * @property {Class} Characteristics.InputSourceType
-  * @property {Class} Characteristics.IsConfigured
-  * @property {Class} Characteristics.LeakDetected
-  * @property {Class} Characteristics.LinkQuality
-  * @property {Class} Characteristics.LockControlPoint
-  * @property {Class} Characteristics.LockCurrentState
-  * @property {Class} Characteristics.LockLastKnownAction
-  * @property {Class} Characteristics.LockManagementAutoSecurityTimeout
-  * @property {Class} Characteristics.LockPhysicalControls
-  * @property {Class} Characteristics.LockTargetState
-  * @property {Class} Characteristics.Logs
-  * @property {Class} Characteristics.Manufacturer
-  * @property {Class} Characteristics.Model
-  * @property {Class} Characteristics.MotionDetected
-  * @property {Class} Characteristics.Mute
-  * @property {Class} Characteristics.Name
-  * @property {Class} Characteristics.NightVision
-  * @property {Class} Characteristics.NitrogenDioxideDensity
-  * @property {Class} Characteristics.ObstructionDetected
-  * @property {Class} Characteristics.OccupancyDetected
-  * @property {Class} Characteristics.On
-  * @property {Class} Characteristics.OpticalZoom
-  * @property {Class} Characteristics.OutletInUse
-  * @property {Class} Characteristics.OzoneDensity
-  * @property {Class} Characteristics.PM10Density
-  * @property {Class} Characteristics.PM2_5Density
-  * @property {Class} Characteristics.PairSetup
-  * @property {Class} Characteristics.PairVerify
-  * @property {Class} Characteristics.PairingFeatures
-  * @property {Class} Characteristics.PairingPairings
-  * @property {Class} Characteristics.PictureMode
-  * @property {Class} Characteristics.PositionState
-  * @property {Class} Characteristics.PowerModeSelection
-  * @property {Class} Characteristics.ProgramMode
-  * @property {Class} Characteristics.ProgrammableSwitchEvent
-  * @property {Class} Characteristics.ProgrammableSwitchOutputState
-  * @property {Class} Characteristics.Reachable
-  * @property {Class} Characteristics.RelativeHumidityDehumidifierThreshold
-  * @property {Class} Characteristics.RelativeHumidityHumidifierThreshold
-  * @property {Class} Characteristics.RelayControlPoint
-  * @property {Class} Characteristics.RelayEnabled
-  * @property {Class} Characteristics.RelayState
-  * @property {Class} Characteristics.RemainingDuration
-  * @property {Class} Characteristics.RemoteKey
-  * @property {Class} Characteristics.ResetFilterIndication
-  * @property {Class} Characteristics.RotationDirection
-  * @property {Class} Characteristics.RotationSpeed
-  * @property {Class} Characteristics.Saturation
-  * @property {Class} Characteristics.SecuritySystemAlarmType
-  * @property {Class} Characteristics.SecuritySystemCurrentState
-  * @property {Class} Characteristics.SecuritySystemTargetState
-  * @property {Class} Characteristics.SelectedRTPStreamConfiguration
-  * @property {Class} Characteristics.SerialNumber
-  * @property {Class} Characteristics.ServiceLabelIndex
-  * @property {Class} Characteristics.ServiceLabelNamespace
-  * @property {Class} Characteristics.SetDuration
-  * @property {Class} Characteristics.SetupEndpoints
-  * @property {Class} Characteristics.SlatType
-  * @property {Class} Characteristics.SleepDiscoveryMode
-  * @property {Class} Characteristics.SmokeDetected
-  * @property {Class} Characteristics.SoftwareRevision
-  * @property {Class} Characteristics.StatusActive
-  * @property {Class} Characteristics.StatusFault
-  * @property {Class} Characteristics.StatusJammed
-  * @property {Class} Characteristics.StatusLowBattery
-  * @property {Class} Characteristics.StatusTampered
-  * @property {Class} Characteristics.StreamingStatus
-  * @property {Class} Characteristics.SulphurDioxideDensity
-  * @property {Class} Characteristics.SupportedAudioStreamConfiguration
-  * @property {Class} Characteristics.SupportedRTPConfiguration
-  * @property {Class} Characteristics.SupportedVideoStreamConfiguration
-  * @property {Class} Characteristics.SwingMode
-  * @property {Class} Characteristics.TargetAirPurifierState
-  * @property {Class} Characteristics.TargetAirQuality
-  * @property {Class} Characteristics.TargetDoorState
-  * @property {Class} Characteristics.TargetFanState
-  * @property {Class} Characteristics.TargetHeaterCoolerState
-  * @property {Class} Characteristics.TargetHeatingCoolingState
-  * @property {Class} Characteristics.TargetHorizontalTiltAngle
-  * @property {Class} Characteristics.TargetHumidifierDehumidifierState
-  * @property {Class} Characteristics.TargetMediaState
-  * @property {Class} Characteristics.TargetPosition
-  * @property {Class} Characteristics.TargetRelativeHumidity
-  * @property {Class} Characteristics.TargetSlatState
-  * @property {Class} Characteristics.TargetTemperature
-  * @property {Class} Characteristics.TargetTiltAngle
-  * @property {Class} Characteristics.TargetVerticalTiltAngle
-  * @property {Class} Characteristics.TargetVisibilityState
-  * @property {Class} Characteristics.TemperatureDisplayUnits
-  * @property {Class} Characteristics.TimeUpdate
-  * @property {Class} Characteristics.TunnelConnectionTimeout
-  * @property {Class} Characteristics.TunneledAccessoryAdvertising
-  * @property {Class} Characteristics.TunneledAccessoryConnected
-  * @property {Class} Characteristics.TunneledAccessoryStateNumber
-  * @property {Class} Characteristics.VOCDensity
-  * @property {Class} Characteristics.ValveType
-  * @property {Class} Characteristics.Version
-  * @property {Class} Characteristics.Volume
-  * @property {Class} Characteristics.VolumeControlType
-  * @property {Class} Characteristics.VolumeSelector
-  * @property {Class} Characteristics.WaterLevel
   * @see https://github.com/KhaosT/HAP-NodeJS
   * @see https://developer.apple.com/homekit/
   */
-class hapNodeJs {}
+class HapNodeJs {
+  /** HomeKit accessory.
+    * <br>See {@link Accessory}.
+    * @type {Class}
+    * @memberof module:hap-nodejs
+    */
+  static get Accessory () {}
+
+  /** Abstract superclass for a HomeKit service.
+    * <br>See {@link Service}.
+    * @type {Class}
+    * @memberof module:hap-nodejs
+    */
+  static get Service () {}
+
+  /** Abstract superclass for a HomeKit characteristic.
+    * <br>See {@link Characteristic}.
+    * @type {Class}
+    * @memberof module:hap-nodejs
+    */
+  static get Characteristic () {}
+
+  /** {@link Service} subclasses for standard HomeKit service types.
+    *
+    * Plugins access these through {@link Delegate#Services}.
+    *
+    * @type {Object}
+    * @memberof module:hap-nodejs
+    * @property {Class} Services.AccessoryInformation
+    * @property {Class} Services.AirPurifier
+    * @property {Class} Services.AirQualitySensor
+    * @property {Class} Services.BatteryService
+    * @property {Class} Services.BridgeConfiguration
+    * @property {Class} Services.BridgingState
+    * @property {Class} Services.CameraControl
+    * @property {Class} Services.CameraRTPStreamManagement
+    * @property {Class} Services.CarbonDioxideSensor
+    * @property {Class} Services.CarbonMonoxideSensor
+    * @property {Class} Services.ContactSensor
+    * @property {Class} Services.Door
+    * @property {Class} Services.Doorbell
+    * @property {Class} Services.Fan
+    * @property {Class} Services.Fanv2
+    * @property {Class} Services.Faucet
+    * @property {Class} Services.FilterMaintenance
+    * @property {Class} Services.GarageDoorOpener
+    * @property {Class} Services.HeaterCooler
+    * @property {Class} Services.HumidifierDehumidifier
+    * @property {Class} Services.HumiditySensor
+    * @property {Class} Services.InputSource
+    * @property {Class} Services.IrrigationSystem
+    * @property {Class} Services.LeakSensor
+    * @property {Class} Services.LightSensor
+    * @property {Class} Services.Lightbulb
+    * @property {Class} Services.LockManagement
+    * @property {Class} Services.LockMechanism
+    * @property {Class} Services.Microphone
+    * @property {Class} Services.MotionSensor
+    * @property {Class} Services.OccupancySensor
+    * @property {Class} Services.Outlet
+    * @property {Class} Services.Pairing
+    * @property {Class} Services.ProtocolInformation
+    * @property {Class} Services.Relay
+    * @property {Class} Services.SecuritySystem
+    * @property {Class} Services.ServiceLabel
+    * @property {Class} Services.Slat
+    * @property {Class} Services.SmokeSensor
+    * @property {Class} Services.Speaker
+    * @property {Class} Services.StatefulProgrammableSwitch
+    * @property {Class} Services.StatelessProgrammableSwitch
+    * @property {Class} Services.Switch
+    * @property {Class} Services.Television
+    * @property {Class} Services.TelevisionSpeaker
+    * @property {Class} Services.TemperatureSensor
+    * @property {Class} Services.Thermostat
+    * @property {Class} Services.TimeInformation
+    * @property {Class} Services.TunneledBTLEAccessoryService
+    * @property {Class} Services.Valve
+    * @property {Class} Services.Window
+    * @property {Class} Services.WindowCovering
+    * @see https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/gen
+    */
+  static get Services () {}
+
+  /** {@link Characteristic} subclasses for standard HomeKit
+    * characteristic types.
+    *
+    * Plugins access these through {@link Delegate#Characteristics}.
+    *
+    * @type {Object}
+    * @memberof module:hap-nodejs
+    * @property {Class} Characteristics.AccessoryFlags
+    * @property {Class} Characteristics.AccessoryIdentifier
+    * @property {Class} Characteristics.Active
+    * @property {Class} Characteristics.ActiveIdentifier
+    * @property {Class} Characteristics.AdministratorOnlyAccess
+    * @property {Class} Characteristics.AirParticulateDensity
+    * @property {Class} Characteristics.AirParticulateSize
+    * @property {Class} Characteristics.AirQuality
+    * @property {Class} Characteristics.AppMatchingIdentifier
+    * @property {Class} Characteristics.AudioFeedback
+    * @property {Class} Characteristics.BatteryLevel
+    * @property {Class} Characteristics.Brightness
+    * @property {Class} Characteristics.CarbonDioxideDetected
+    * @property {Class} Characteristics.CarbonDioxideLevel
+    * @property {Class} Characteristics.CarbonDioxidePeakLevel
+    * @property {Class} Characteristics.CarbonMonoxideDetected
+    * @property {Class} Characteristics.CarbonMonoxideLevel
+    * @property {Class} Characteristics.CarbonMonoxidePeakLevel
+    * @property {Class} Characteristics.Category
+    * @property {Class} Characteristics.ChargingState
+    * @property {Class} Characteristics.ClosedCaptions
+    * @property {Class} Characteristics.ColorTemperature
+    * @property {Class} Characteristics.ConfigureBridgedAccessory
+    * @property {Class} Characteristics.ConfigureBridgedAccessoryStatus
+    * @property {Class} Characteristics.ConfiguredName
+    * @property {Class} Characteristics.ContactSensorState
+    * @property {Class} Characteristics.CoolingThresholdTemperature
+    * @property {Class} Characteristics.CurrentAirPurifierState
+    * @property {Class} Characteristics.CurrentAmbientLightLevel
+    * @property {Class} Characteristics.CurrentDoorState
+    * @property {Class} Characteristics.CurrentFanState
+    * @property {Class} Characteristics.CurrentHeaterCoolerState
+    * @property {Class} Characteristics.CurrentHeatingCoolingState
+    * @property {Class} Characteristics.CurrentHorizontalTiltAngle
+    * @property {Class} Characteristics.CurrentHumidifierDehumidifierState
+    * @property {Class} Characteristics.CurrentMediaState
+    * @property {Class} Characteristics.CurrentPosition
+    * @property {Class} Characteristics.CurrentRelativeHumidity
+    * @property {Class} Characteristics.CurrentSlatState
+    * @property {Class} Characteristics.CurrentTemperature
+    * @property {Class} Characteristics.CurrentTiltAngle
+    * @property {Class} Characteristics.CurrentTime
+    * @property {Class} Characteristics.CurrentVerticalTiltAngle
+    * @property {Class} Characteristics.CurrentVisibilityState
+    * @property {Class} Characteristics.DayoftheWeek
+    * @property {Class} Characteristics.DigitalZoom
+    * @property {Class} Characteristics.DiscoverBridgedAccessories
+    * @property {Class} Characteristics.DiscoveredBridgedAccessories
+    * @property {Class} Characteristics.DisplayOrder
+    * @property {Class} Characteristics.FilterChangeIndication
+    * @property {Class} Characteristics.FilterLifeLevel
+    * @property {Class} Characteristics.FirmwareRevision
+    * @property {Class} Characteristics.HardwareRevision
+    * @property {Class} Characteristics.HeatingThresholdTemperature
+    * @property {Class} Characteristics.HoldPosition
+    * @property {Class} Characteristics.Hue
+    * @property {Class} Characteristics.Identifier
+    * @property {Class} Characteristics.Identify
+    * @property {Class} Characteristics.ImageMirroring
+    * @property {Class} Characteristics.ImageRotation
+    * @property {Class} Characteristics.InUse
+    * @property {Class} Characteristics.InputDeviceType
+    * @property {Class} Characteristics.InputSourceType
+    * @property {Class} Characteristics.IsConfigured
+    * @property {Class} Characteristics.LeakDetected
+    * @property {Class} Characteristics.LinkQuality
+    * @property {Class} Characteristics.LockControlPoint
+    * @property {Class} Characteristics.LockCurrentState
+    * @property {Class} Characteristics.LockLastKnownAction
+    * @property {Class} Characteristics.LockManagementAutoSecurityTimeout
+    * @property {Class} Characteristics.LockPhysicalControls
+    * @property {Class} Characteristics.LockTargetState
+    * @property {Class} Characteristics.Logs
+    * @property {Class} Characteristics.Manufacturer
+    * @property {Class} Characteristics.Model
+    * @property {Class} Characteristics.MotionDetected
+    * @property {Class} Characteristics.Mute
+    * @property {Class} Characteristics.Name
+    * @property {Class} Characteristics.NightVision
+    * @property {Class} Characteristics.NitrogenDioxideDensity
+    * @property {Class} Characteristics.ObstructionDetected
+    * @property {Class} Characteristics.OccupancyDetected
+    * @property {Class} Characteristics.On
+    * @property {Class} Characteristics.OpticalZoom
+    * @property {Class} Characteristics.OutletInUse
+    * @property {Class} Characteristics.OzoneDensity
+    * @property {Class} Characteristics.PM10Density
+    * @property {Class} Characteristics.PM2_5Density
+    * @property {Class} Characteristics.PairSetup
+    * @property {Class} Characteristics.PairVerify
+    * @property {Class} Characteristics.PairingFeatures
+    * @property {Class} Characteristics.PairingPairings
+    * @property {Class} Characteristics.PictureMode
+    * @property {Class} Characteristics.PositionState
+    * @property {Class} Characteristics.PowerModeSelection
+    * @property {Class} Characteristics.ProgramMode
+    * @property {Class} Characteristics.ProgrammableSwitchEvent
+    * @property {Class} Characteristics.ProgrammableSwitchOutputState
+    * @property {Class} Characteristics.Reachable
+    * @property {Class} Characteristics.RelativeHumidityDehumidifierThreshold
+    * @property {Class} Characteristics.RelativeHumidityHumidifierThreshold
+    * @property {Class} Characteristics.RelayControlPoint
+    * @property {Class} Characteristics.RelayEnabled
+    * @property {Class} Characteristics.RelayState
+    * @property {Class} Characteristics.RemainingDuration
+    * @property {Class} Characteristics.RemoteKey
+    * @property {Class} Characteristics.ResetFilterIndication
+    * @property {Class} Characteristics.RotationDirection
+    * @property {Class} Characteristics.RotationSpeed
+    * @property {Class} Characteristics.Saturation
+    * @property {Class} Characteristics.SecuritySystemAlarmType
+    * @property {Class} Characteristics.SecuritySystemCurrentState
+    * @property {Class} Characteristics.SecuritySystemTargetState
+    * @property {Class} Characteristics.SelectedRTPStreamConfiguration
+    * @property {Class} Characteristics.SerialNumber
+    * @property {Class} Characteristics.ServiceLabelIndex
+    * @property {Class} Characteristics.ServiceLabelNamespace
+    * @property {Class} Characteristics.SetDuration
+    * @property {Class} Characteristics.SetupEndpoints
+    * @property {Class} Characteristics.SlatType
+    * @property {Class} Characteristics.SleepDiscoveryMode
+    * @property {Class} Characteristics.SmokeDetected
+    * @property {Class} Characteristics.SoftwareRevision
+    * @property {Class} Characteristics.StatusActive
+    * @property {Class} Characteristics.StatusFault
+    * @property {Class} Characteristics.StatusJammed
+    * @property {Class} Characteristics.StatusLowBattery
+    * @property {Class} Characteristics.StatusTampered
+    * @property {Class} Characteristics.StreamingStatus
+    * @property {Class} Characteristics.SulphurDioxideDensity
+    * @property {Class} Characteristics.SupportedAudioStreamConfiguration
+    * @property {Class} Characteristics.SupportedRTPConfiguration
+    * @property {Class} Characteristics.SupportedVideoStreamConfiguration
+    * @property {Class} Characteristics.SwingMode
+    * @property {Class} Characteristics.TargetAirPurifierState
+    * @property {Class} Characteristics.TargetAirQuality
+    * @property {Class} Characteristics.TargetDoorState
+    * @property {Class} Characteristics.TargetFanState
+    * @property {Class} Characteristics.TargetHeaterCoolerState
+    * @property {Class} Characteristics.TargetHeatingCoolingState
+    * @property {Class} Characteristics.TargetHorizontalTiltAngle
+    * @property {Class} Characteristics.TargetHumidifierDehumidifierState
+    * @property {Class} Characteristics.TargetMediaState
+    * @property {Class} Characteristics.TargetPosition
+    * @property {Class} Characteristics.TargetRelativeHumidity
+    * @property {Class} Characteristics.TargetSlatState
+    * @property {Class} Characteristics.TargetTemperature
+    * @property {Class} Characteristics.TargetTiltAngle
+    * @property {Class} Characteristics.TargetVerticalTiltAngle
+    * @property {Class} Characteristics.TargetVisibilityState
+    * @property {Class} Characteristics.TemperatureDisplayUnits
+    * @property {Class} Characteristics.TimeUpdate
+    * @property {Class} Characteristics.TunnelConnectionTimeout
+    * @property {Class} Characteristics.TunneledAccessoryAdvertising
+    * @property {Class} Characteristics.TunneledAccessoryConnected
+    * @property {Class} Characteristics.TunneledAccessoryStateNumber
+    * @property {Class} Characteristics.VOCDensity
+    * @property {Class} Characteristics.ValveType
+    * @property {Class} Characteristics.Version
+    * @property {Class} Characteristics.Volume
+    * @property {Class} Characteristics.VolumeControlType
+    * @property {Class} Characteristics.VolumeSelector
+    * @property {Class} Characteristics.WaterLevel
+    * @see https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/gen
+    */
+  static get Characteristics () {}
+}
 
 /* eslint-enable */
