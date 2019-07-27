@@ -115,13 +115,6 @@ class homebridgeLib {
     */
   static get RestClient () { return require('./lib/RestClient') }
 
-  /** Parser and validator for value types.<br>
-    * <br>See {@link TypeParser} and the {@tutorial TypeParser} tutorial.
-    * @type {Class}
-    * @memberof module:homebridge-lib
-    */
-  static get TypeParser () { return require('./lib/TypeParser') }
-
   /** Universal Plug and Play client.
     * <br>See {@link UpnpClient}.
     * @type {Class}
