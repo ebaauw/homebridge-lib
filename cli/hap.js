@@ -43,7 +43,9 @@ class Main extends homebridgeLib.CommandLineTool {
     parser.flag('l', 'listen', (key) => { this.options.mode = 'daemon' })
     parser.flag('s', 'service', (key) => { this.options.mode = 'service' })
     parser.option('t', 'timeout', (value, key) => {
-      this.options.timeout = homebridgeLib.OptionParser.toInt(value, 1, 60, true)
+      this.options.timeout = homebridgeLib.OptionParser.toInt(
+        'timeout', value, 1, 60, true
+      )
     })
     parser.parse()
   }

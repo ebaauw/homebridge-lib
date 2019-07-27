@@ -75,7 +75,9 @@ class Main extends homebridgeLib.CommandLineTool {
     parser.flag('r', 'raw', (key) => { this.options.raw = true })
     parser.flag('s', 'service', (key) => { this.options.mode = 'service' })
     parser.option('t', 'timeout', (value, key) => {
-      this.upnp.timeout = homebridgeLib.OptionParser.toInt(value, 1, 60, true)
+      this.upnp.timeout = homebridgeLib.OptionParser.toInt(
+        'timeout', value, 1, 60, true
+      )
     })
     parser.flag('z', 'ZonePlayer', (key) => {
       this.upnp.class = 'urn:schemas-upnp-org:device:ZonePlayer:1'

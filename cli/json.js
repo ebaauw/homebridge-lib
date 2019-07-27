@@ -63,10 +63,13 @@ class Main extends homebridgeLib.CommandLineTool {
     parser.flag('a', 'ascii', () => { this.options.ascii = true })
     parser.flag('t', 'topOnly', () => { this.options.topOnly = true })
     parser.option('d', 'maxDepth', (value, option) => {
-      this.options.maxDepth = homebridgeLib.OptionParser.toInt(value, 0, null, true)
+      this.options.maxDepth = homebridgeLib.OptionParser.toInt(
+        'maxDepth', value, 0, null, true)
     })
     parser.option('p', 'fromPath', (value, option) => {
-      this.options.fromPath = homebridgeLib.OptionParser.toPath(value, true, true)
+      this.options.fromPath = homebridgeLib.OptionParser.toPath(
+        'fromPath', value, true, true
+      )
     })
     parser.flag('l', 'leavesOnly', () => { this.options.leavesOnly = true })
     parser.flag('k', 'keysOnly', () => { this.options.keysOnly = true })
