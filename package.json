@@ -3,7 +3,7 @@
   "description": "Library for homebridge plugins",
   "author": "Erik Baauw",
   "license": "Apache-2.0",
-  "version": "4.3.4",
+  "version": "4.4.0",
   "keywords": [
     "homekit",
     "homebridge"
