@@ -33,7 +33,7 @@
   },
   "scripts": {
     "prepare": "standard && mocha && rm -rf out && jsdoc -c jsdoc.json",
-    "test": "mocha"
+    "test": "standard && mocha"
   },
   "repository": {
     "type": "git",
