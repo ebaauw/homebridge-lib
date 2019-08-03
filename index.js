@@ -145,6 +145,27 @@ class homebridgeLib {
     * @memberof module:homebridge-lib
     */
   static get MyHomeKitTypes () { return require('./lib/MyHomeKitTypes') }
+
+  /** The `hap` command.
+    * <br> Issue `hap -h` for help.
+    * @type {Class}
+    * @memberof module:homebridge-lib
+    */
+  static get HapCommand () { return require('./lib/HapCommand') }
+
+  /** The `json` command.
+    * <br> Issue `json -h` for help.
+    * @type {Class}
+    * @memberof module:homebridge-lib
+    */
+  static get JsonCommand () { return require('./lib/JsonCommand') }
+
+  /** The `upnp` command.
+    * <br> Issue `upnp -h` for help.
+    * @type {Class}
+    * @memberof module:homebridge-lib
+    */
+  static get UpnpCommand () { return require('./lib/UpnpCommand') }
 }
 
 module.exports = homebridgeLib
