@@ -3,7 +3,7 @@
 // homebridge-lib/cli/json.js
 //
 // Library for Homebridge plugins.
-// Copyright © 2018-2019 Erik Baauw. All rights reserved.
+// Copyright © 2018-2020 Erik Baauw. All rights reserved.
 //
 // JSON formatter.
 
