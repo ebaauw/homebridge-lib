@@ -1,6 +1,9 @@
 # homebridge-lib
-[![npm](https://img.shields.io/npm/dt/homebridge-lib.svg)](https://www.npmjs.com/package/homebridge-lib) [![npm](https://img.shields.io/npm/v/homebridge-lib.svg)](https://www.npmjs.com/package/homebridge-lib)
+[![npm](https://img.shields.io/npm/dt/homebridge-lib.svg)](https://www.npmjs.com/package/homebridge-lib)
+[![npm](https://img.shields.io/npm/v/homebridge-lib.svg)](https://www.npmjs.com/package/homebridge-lib)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![GitHub issues](https://img.shields.io/github/issues/ebaauw/homebridge-lib)](https://github.com/ebaauw/homebridge-lib/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/ebaauw/homebridge-lib)](https://github.com/ebaauw/homebridge-lib/pulls)
 
 ## Library for Homebridge Plugins
 Copyright © 2018-2020 Erik Baauw. All rights reserved.
