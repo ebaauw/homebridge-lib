@@ -1,6 +1,6 @@
 # homebridge-lib
-[![npm](https://img.shields.io/npm/dt/homebridge-lib.svg)](https://www.npmjs.com/package/homebridge-lib)
-[![npm](https://img.shields.io/npm/v/homebridge-lib.svg)](https://www.npmjs.com/package/homebridge-lib)
+[![Downloads](https://img.shields.io/npm/dt/homebridge-lib.svg)](https://www.npmjs.com/package/homebridge-lib)
+[![Version](https://img.shields.io/npm/v/homebridge-lib.svg)](https://www.npmjs.com/package/homebridge-lib)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![GitHub issues](https://img.shields.io/github/issues/ebaauw/homebridge-lib)](https://github.com/ebaauw/homebridge-lib/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/ebaauw/homebridge-lib)](https://github.com/ebaauw/homebridge-lib/pulls)
@@ -30,14 +30,20 @@ Tool    | Description
 Each command-line tool takes a `-h` or `--help` argument to provide a brief overview of its functionality and command-line arguments.
 
 ### Installation
-This library is _not_ a Homebridge plugin and should not need to be installed manually.
+This library is _not_ a Homebridge plugin and does not need to be installed manually.
 Instead, Homebridge plugins using this library should list it as a dependency in their `package.json`.
 This way, `npm` installs `homebridge-lib` automatically when installing the actual plugin.
 
-To install the command-line tools standalone, without installing a Homebridge plugin, use:
+To install the command-line tools, use:
 ```
 $ sudo npm -g i homebridge-lib
 ```
+This creates symlinks to these tools in `/usr/bin` or `/usr/local/bin` (depending on how you installed NodeJS).
+Note that, when homebridge-lib is installed like this, homebridge might issue a warning at startup:
+```
+Plugin /usr/lib/node_modules/homebridge-lib package.json does not contain the keyword 'homebridge-plugin'
+```
+This warning can be ignored safely.
 
 ### Credits
 The logic for handling [Eve](https://www.evehome.com/en/eve-app) history was copied from Simone Tisa's [`fakegato-history`](https://github.com/simont77/fakegato-history) repository, copyright © 2017 simont77.
