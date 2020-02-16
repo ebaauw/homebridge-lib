@@ -94,6 +94,13 @@ class homebridgeLib {
     */
   static get CommandLineTool () { return require('./lib/CommandLineTool') }
 
+  /** HTTP client.
+    * <br>See {@link HttpClient}.
+    * @type {Class}
+    * @memberof module:homebridge-lib
+    */
+  static get HttpClient () { return require('./lib/HttpClient') }
+
   /** JSON formatter.
     * <br>See {@link JsonFormatter}.
     * @type {Class}
