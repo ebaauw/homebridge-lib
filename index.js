@@ -20,10 +20,10 @@
   * and/or command-line utilities:
   * {@link CommandLineParser},
   * {@link EveHomeKitTypes},
+  * {@link HttpClient},
   * {@link JsonFormatter},
   * {@link MyHomeKitTypes},
-  * {@link OptionParser},
-  * {@link RestClient}, and
+  * {@link OptionParser}, and
   * {@link UpnpClient}.
   * - A series of command-line utilities for troubleshooting Homebridge setups:
   * `hap`, `json`, `upnp`.
@@ -114,13 +114,6 @@ class homebridgeLib {
     * @memberof module:homebridge-lib
     */
   static get OptionParser () { return require('./lib/OptionParser') }
-
-  /** REST API client.
-    * <br>See {@link RestClient}.
-    * @type {Class}
-    * @memberof module:homebridge-lib
-    */
-  static get RestClient () { return require('./lib/RestClient') }
 
   /** Universal Plug and Play client.
     * <br>See {@link UpnpClient}.
