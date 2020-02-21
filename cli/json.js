@@ -64,7 +64,7 @@ class Main extends homebridgeLib.CommandLineTool {
     parser.flag('t', 'topOnly', () => { this.options.topOnly = true })
     parser.option('d', 'maxDepth', (value, option) => {
       this.options.maxDepth = homebridgeLib.OptionParser.toInt(
-        'maxDepth', value, 0, null, true)
+        'maxDepth', value, 0, undefined, true)
     })
     parser.option('p', 'fromPath', (value, option) => {
       this.options.fromPath = homebridgeLib.OptionParser.toPath(
