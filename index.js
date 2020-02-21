@@ -145,6 +145,24 @@ class homebridgeLib {
     * @memberof module:homebridge-lib
     */
   static get MyHomeKitTypes () { return require('./lib/MyHomeKitTypes') }
+
+  /** Resolve after given period, delaying execution.
+    *
+    * E.g. to delay execution for 1.5 seconds, issue:
+    * ```javascript
+    *   await homebridgeLib.timeout(1500)
+    * ```
+    *
+    * @param {integer} msec - Period (in msec) to wait.
+    * @throws `TypeError` - On invalid parameter value.
+    * @memberof module:homebridge-lib
+    */
+  static async timeout (msec) {
+    msec = homebridgeLib.OptionParser.toInt('msec', msec, 0)
+    return new Promise((resolve, reject) => {
+      setTimeout(() => { resolve() }, msec)
+    })
+  }
 }
 
 module.exports = homebridgeLib
