@@ -68,7 +68,7 @@ class Main extends homebridgeLib.CommandLineTool {
     })
     parser.option('p', 'fromPath', (value, option) => {
       this.options.fromPath = homebridgeLib.OptionParser.toPath(
-        'fromPath', value, true, true
+        'fromPath', value, true
       )
     })
     parser.flag('l', 'leavesOnly', () => { this.options.leavesOnly = true })
