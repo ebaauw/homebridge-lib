@@ -83,8 +83,8 @@ class Main extends homebridgeLib.CommandLineTool {
     let value
     try {
       value = JSON.parse(s)
-    } catch (err) {
-      throw new Error(err.message)
+    } catch (error) {
+      throw new Error(error.message) // Convert SyntaxError to Error.
     }
     const output = this.jsonFormatter.stringify(value)
     if (this.n++ > 0) {
@@ -106,20 +106,20 @@ class Main extends homebridgeLib.CommandLineTool {
       this.stringList.map((s) => {
         try {
           this.processString(s)
-        } catch (err) {
-          this.error(err)
+        } catch (error) {
+          this.error(error)
         }
       })
       this.fileList.map((file) => {
         try {
           const s = fs.readFileSync(file === '-' ? 0 : file, 'utf8')
           this.processString(s)
-        } catch (err) {
-          this.error(err)
+        } catch (error) {
+          this.error(error)
         }
       })
-    } catch (err) {
-      this.fatal(err)
+    } catch (error) {
+      this.fatal(error)
     }
   }
 }
