@@ -89,8 +89,8 @@ class Main extends homebridgeLib.CommandLineTool {
       // browser6.on('up', this.onUp.bind(this))
       process.on('SIGINT', () => { this.exit('SIGINT') })
       process.on('SIGTERM', () => { this.exit('SIGTERM') })
-    } catch (err) {
-      this.fatal(err)
+    } catch (error) {
+      this.fatal(error)
     }
   }
 }
