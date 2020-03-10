@@ -114,15 +114,15 @@ class Main extends homebridgeLib.CommandLineTool {
         }
         this.print('%s: %s', address, message)
       })
-      unpnClient.on('error', (err) => { this.error(err) })
+      unpnClient.on('error', (error) => { this.error(error) })
       if (this.options.mode) {
         this.setOptions({ mode: this.options.mode })
         unpnClient.listen()
       } else {
         unpnClient.search()
       }
-    } catch (err) {
-      this.fatal(err)
+    } catch (error) {
+      this.fatal(error)
     }
   }
 }
