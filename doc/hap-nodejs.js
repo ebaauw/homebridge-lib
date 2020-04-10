@@ -180,6 +180,24 @@ class Characteristic {
     */
   static get Perms () {}
 
+  /** HomeKit characteristic format.
+    *
+    * A permission that has been restricted to administrators.
+    * @typedef
+    */
+  static get RestrictedPerm () {}
+
+  /** Valid HomeKit admin-only permissions.
+    *
+    * Plugins access these through {@link Delegate#Characteristic}.
+    *
+    * @type {Object}
+    * @property {RestrictedPerm} READ - Read.
+    * @property {RestrictedPerm} WRITE - Write.
+    * @property {RestrictedPerm} NOTIFY - Notify.
+    */
+  static get RestrictedPerms () {}
+
   /** HomeKit characteristic properties.
     *
     * When defining a custom characteristic type, plugins pass the default
@@ -192,6 +210,7 @@ class Characteristic {
     * @property {Format} format - Format.
     * @property {Unit|string} unit - Unit.
     * @property {Perm[]} perms - Permissions.
+    * @property {RestrictedPerm[]} restrictedPerms - Admin-only permissions.
     * @property {?string} description - Description.
     * @property {?number} minValue - Minimum value, for numeric formats.
     * @property {?number} maxValue - Maximum value, for numeric formats.
@@ -199,7 +218,7 @@ class Characteristic {
     * for numeric formats.
     * @property {?number} [maxLen=64] - Maximum length,
     * for `Formats.STRING` format.
-    * @property {?number} [maxDataLen=2097152]: Maximum length,
+    * @property {?number} [maxDataLen=2097152] - Maximum length,
     * for `Formats.DATA` format.
     * @property {?number[]} valid-values - Valid values, for numeric formats.
     * @property {Array<number,number>} valid-values-range - Ranges of valid values,
