@@ -132,6 +132,24 @@ class Service {}
 class Characteristic {
   /** HomeKit characteristic format.
     *
+    * A permission that has been restricted to administrators.
+    * @typedef
+    */
+  static get AccessPerm () {}
+
+  /** HomeKit admin-only access.
+    *
+    * Plugins access these through {@link Delegate#Characteristic}.
+    *
+    * @type {Object}
+    * @property {AccessPerm} READ - Read restricted to admins.
+    * @property {AccessPerm} WRITE - Write restricted to admins.
+    * @property {AccessPerm} NOTIFY - Notify restricted to admins.
+    */
+  static get Access () {}
+
+  /** HomeKit characteristic format.
+    *
     * The format determines what type of values the characteristic can hold.
     * @typedef
     */
@@ -180,24 +198,6 @@ class Characteristic {
     */
   static get Perms () {}
 
-  /** HomeKit characteristic format.
-    *
-    * A permission that has been restricted to administrators.
-    * @typedef
-    */
-  static get RestrictedPerm () {}
-
-  /** Valid HomeKit admin-only permissions.
-    *
-    * Plugins access these through {@link Delegate#Characteristic}.
-    *
-    * @type {Object}
-    * @property {RestrictedPerm} READ - Read.
-    * @property {RestrictedPerm} WRITE - Write.
-    * @property {RestrictedPerm} NOTIFY - Notify.
-    */
-  static get RestrictedPerms () {}
-
   /** HomeKit characteristic properties.
     *
     * When defining a custom characteristic type, plugins pass the default
@@ -210,7 +210,7 @@ class Characteristic {
     * @property {Format} format - Format.
     * @property {Unit|string} unit - Unit.
     * @property {Perm[]} perms - Permissions.
-    * @property {RestrictedPerm[]} restrictedPerms - Admin-only permissions.
+    * @property {Access[]} adminOnlyAccess - Admin-only permissions.
     * @property {?string} description - Description.
     * @property {?number} minValue - Minimum value, for numeric formats.
     * @property {?number} maxValue - Maximum value, for numeric formats.
