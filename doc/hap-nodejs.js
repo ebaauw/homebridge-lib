@@ -24,7 +24,7 @@
   *
   * @class
   * @hideconstructor
-  * @see https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/Accessory.js
+  * @see https://github.com/homebridge/HAP-NodeJS/blob/master/src/lib/Accessory.ts
   */
 class Accessory {
   /** Homekit accessory category.
@@ -72,6 +72,8 @@ class Accessory {
     * @property {Category} SHOWER_HEAD
     * @property {Category} TELEVISION
     * @property {Category} TARGET_CONTROLLER
+    * @property {Category} ROUTER
+    * @property {Category} AUDIO_RECEIVER
     */
   static get Categories () {}
 }
@@ -101,7 +103,7 @@ class Accessory {
   * @class
   * @abstract
   * @hideconstructor
-  * @see https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/Service.js
+  * @see https://github.com/homebridge/HAP-NodeJS/blob/master/src/lib/Service.ts
   */
 class Service {}
 
@@ -127,7 +129,7 @@ class Service {}
   * @class
   * @abstract
   * @hideconstructor
-  * @see https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/Characteristic.js
+  * @see https://github.com/homebridge/HAP-NodeJS/blob/master/src/lib/Characteristic.ts
   */
 class Characteristic {
   /** HomeKit characteristic format.
@@ -264,7 +266,7 @@ class Characteristic {
   * Plugins do need to be aware of the HAP-NodeJS elements below.
   *
   * @module hap-nodejs
-  * @see https://github.com/KhaosT/HAP-NodeJS
+  * @see https://github.com/homebridge/HAP-NodeJS
   * @see https://developer.apple.com/homekit/
   */
 class HapNodeJs {

@@ -19,11 +19,11 @@
   * @see https://github.com/nfarina/homebridge/blob/master/lib/api.js
   */
 class API {
-  /** Emitted every second.
+  /** Emitted when homebridge has started its HAP server.
     * @event API#didFinishLaunching
     */
 
-  /** Emitted every second.
+  /** Emitted when homebridge is shutting down.
     * @event API#shutdown
     */
 
@@ -47,7 +47,7 @@ class API {
   *
   * @class
   * @hideconstructor
-  * @see https://github.com/nfarina/homebridge/blob/master/lib/logger.js
+  * @see https://github.com/homebridge/homebridge/blob/master/src/logger.ts
   */
 class Logger {}
 
@@ -64,9 +64,12 @@ class Logger {}
   *
   * @class
   * @hideconstructor
-  * @see https://github.com/KhaosT/HAP-NodeJS/lib/Accessory.js
+  * @see https://github.com/homebridge/homebridge/blob/master/src/platformAccessory.ts
   */
 class PlatformAccessory {}
+/** Emitted when HomeKit user activates _Identify_.
+  * @event PlatformAccessory#identify
+  */
 
 /** Class for a Homebridge plugin.
   *
@@ -110,7 +113,7 @@ class PlatformAccessory {}
   * {@link PlatformAccessory}.
   *
   * @class
-  * @see https://github.com/KhaosT/HAP-NodeJS/lib/Accessory.js
+  * @see https://github.com/homebridge/homebridge/blob/master/src/plugin.ts
   */
 class Plugin {
   /** Creates an instance of the plugin.
@@ -148,7 +151,7 @@ class Plugin {
   * @property {Class} Plugin - Class for a Homebridge plugin.
   * See {@link Plugin}
   * @see https://homebridge.io
-  * @see https://github.com/nfarina/homebridge
+  * @see https://github.com/HomeBridge/homebridge
   */
 class homebridge {}
 
