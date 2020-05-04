@@ -24,10 +24,10 @@
     "node": "^12.16.3"
   },
   "dependencies": {
-    "bonjour-hap": "~3.5.8",
+    "bonjour-hap": "~3.5.9",
     "chalk": "~4.0.0",
     "debug": "~4.1.1",
-    "moment": "~2.24.0",
+    "moment": "~2.25.1",
     "semver": "~7.3.2"
   },
   "scripts": {
