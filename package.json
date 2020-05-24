@@ -24,11 +24,11 @@
     "node": "^12.16.3"
   },
   "dependencies": {
-    "bonjour-hap": "~3.5.10",
-    "chalk": "~4.0.0",
-    "debug": "~4.1.1",
-    "moment": "~2.25.3",
-    "semver": "~7.3.2"
+    "bonjour-hap": "^3.5.10",
+    "chalk": "^4.0.0",
+    "debug": "^4.1.1",
+    "moment": "^2.26.0",
+    "semver": "^7.3.2"
   },
   "scripts": {
     "prepare": "standard && mocha && rm -rf out && jsdoc -c jsdoc.json",
