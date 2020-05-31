@@ -20,8 +20,8 @@
     "upnp": "cli/upnp.js"
   },
   "engines": {
-    "homebridge": "^1.0.4",
-    "node": "^12.16.3"
+    "homebridge": "^1.1.0",
+    "node": "^12.17.0"
   },
   "dependencies": {
     "bonjour-hap": "^3.5.10",
