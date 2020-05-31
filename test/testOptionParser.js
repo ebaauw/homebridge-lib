@@ -575,4 +575,21 @@ describe('OptionParser', function () {
       { v: -Math.PI, p1: 8, p2: 6, r: '-3.141593' }
     ])
   })
+  describe('.toHost()', function () {
+    test(OptionParser.toHost, 0, [
+      { v: 'localhost', s: { hostname: 'localhost' } },
+      { v: 'localhost:80', s: { hostname: 'localhost', port: 80 } },
+      { v: '127.0.0.1', s: { hostname: '127.0.0.1' } },
+      { v: '127.0.0.1:80', s: { hostname: '127.0.0.1', port: 80 } },
+      { e: new TypeError('key: missing string value') },
+      { v: null, e: new TypeError('key: missing string value') },
+      { v: '', e: new RangeError('key: not a non-empty string') },
+      { v: '@', e: new RangeError('key: @: not a valid hostname or IPv4 address') },
+      { v: 'localhost:80:80', e: new RangeError('key: not a valid host') },
+      { v: ':80', e: new RangeError('key: missing hostname or IPv4 address') },
+      { v: 'localhost:', e: new RangeError('key: missing port') },
+      { v: 'localhost:x', e: new TypeError('key: x: not an integer') },
+      { v: 'localhost:100000', e: new RangeError('key: 100000: not a valid port') }
+    ])
+  })
 })
