@@ -21,11 +21,11 @@
   },
   "engines": {
     "homebridge": "^1.1.0",
-    "node": "^12.17.0"
+    "node": "^12.18.0"
   },
   "dependencies": {
     "bonjour-hap": "^3.5.10",
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.0",
     "debug": "^4.1.1",
     "moment": "^2.26.0",
     "semver": "^7.3.2"
