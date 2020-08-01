@@ -11,7 +11,7 @@
 
 const homebridgeLib = require('../index')
 
-const Bonjour = require('bonjour-hap')
+const Bonjour = require('bonjour')
 const chalk = require('chalk')
 
 const b = chalk.bold
