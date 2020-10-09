@@ -21,12 +21,12 @@
   },
   "engines": {
     "homebridge": "^1.1.0",
-    "node": "^12.18.4"
+    "node": "^12.19.0"
   },
   "dependencies": {
     "bonjour": "^3.5.0",
     "chalk": "^4.1.0",
-    "debug": "^4.1.1",
+    "debug": "^4.2.0",
     "semver": "^7.3.2"
   },
   "scripts": {
