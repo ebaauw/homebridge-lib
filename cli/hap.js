@@ -65,7 +65,8 @@ class Main extends homebridgeLib.CommandLineTool {
       this.parseArguments()
       this.jsonFormatter = new homebridgeLib.JsonFormatter(
         this.options.mode === 'service'
-          ? { noWhiteSpace: true, sortKeys: true } : { sortKeys: true }
+          ? { noWhiteSpace: true, sortKeys: true }
+          : { sortKeys: true }
       )
       if (this.options.mode) {
         this.setOptions({ mode: this.options.mode })
