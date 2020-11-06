@@ -103,14 +103,14 @@ class Main extends homebridgeLib.CommandLineTool {
         this.fileList = ['-']
       }
       this.n = 0
-      this.stringList.map((s) => {
+      this.stringList.forEach((s) => {
         try {
           this.processString(s)
         } catch (error) {
           this.error(error)
         }
       })
-      this.fileList.map((file) => {
+      this.fileList.forEach((file) => {
         try {
           const s = fs.readFileSync(file === '-' ? 0 : file, 'utf8')
           this.processString(s)
