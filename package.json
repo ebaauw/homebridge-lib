@@ -26,7 +26,7 @@
   "dependencies": {
     "bonjour": "^3.5.0",
     "chalk": "^4.1.0",
-    "semver": "^7.3.2"
+    "semver": "^7.3.4"
   },
   "scripts": {
     "prepare": "standard && mocha && rm -rf out && jsdoc -c jsdoc.json",
