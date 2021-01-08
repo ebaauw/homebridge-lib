@@ -54,29 +54,30 @@ class Main extends homebridgeLib.CommandLineTool {
 
   parseArguments () {
     const parser = new homebridgeLib.CommandLineParser()
-    parser.help('h', 'help', help)
-    parser.version('V', 'version')
-    parser.flag('s', 'sortKeys', () => { this.options.sortKeys = true })
-    parser.flag('n', 'noWhiteSpace', () => { this.options.noWhiteSpace = true })
-    parser.flag('j', 'jsonArray', () => { this.options.jsonArray = true })
-    parser.flag('u', 'joinKeys', () => { this.options.joinKeys = true })
-    parser.flag('a', 'ascii', () => { this.options.ascii = true })
-    parser.flag('t', 'topOnly', () => { this.options.topOnly = true })
-    parser.option('d', 'maxDepth', (value, option) => {
-      this.options.maxDepth = homebridgeLib.OptionParser.toInt(
-        'maxDepth', value, 0, undefined, true)
-    })
-    parser.option('p', 'fromPath', (value, option) => {
-      this.options.fromPath = homebridgeLib.OptionParser.toPath(
-        'fromPath', value, true
-      )
-    })
-    parser.flag('l', 'leavesOnly', () => { this.options.leavesOnly = true })
-    parser.flag('k', 'keysOnly', () => { this.options.keysOnly = true })
-    parser.flag('v', 'valuesOnly', () => { this.options.valuesOnly = true })
-    parser.option('c', 'string', (value) => { this.stringList.push(value) })
-    parser.remaining((list) => { this.fileList = list })
-    parser.parse()
+    parser
+      .help('h', 'help', help)
+      .version('V', 'version')
+      .flag('s', 'sortKeys', () => { this.options.sortKeys = true })
+      .flag('n', 'noWhiteSpace', () => { this.options.noWhiteSpace = true })
+      .flag('j', 'jsonArray', () => { this.options.jsonArray = true })
+      .flag('u', 'joinKeys', () => { this.options.joinKeys = true })
+      .flag('a', 'ascii', () => { this.options.ascii = true })
+      .flag('t', 'topOnly', () => { this.options.topOnly = true })
+      .option('d', 'maxDepth', (value, option) => {
+        this.options.maxDepth = homebridgeLib.OptionParser.toInt(
+          'maxDepth', value, 0, undefined, true)
+      })
+      .option('p', 'fromPath', (value, option) => {
+        this.options.fromPath = homebridgeLib.OptionParser.toPath(
+          'fromPath', value, true
+        )
+      })
+      .flag('l', 'leavesOnly', () => { this.options.leavesOnly = true })
+      .flag('k', 'keysOnly', () => { this.options.keysOnly = true })
+      .flag('v', 'valuesOnly', () => { this.options.valuesOnly = true })
+      .option('c', 'string', (value) => { this.stringList.push(value) })
+      .remaining((list) => { this.fileList = list })
+      .parse()
   }
 
   processString (s) {
