@@ -3,7 +3,7 @@
 // homebridge-lib/cli/upnp.js
 //
 // Library for Homebridge plugins.
-// Copyright © 2018-2020 Erik Baauw. All rights reserved.
+// Copyright © 2018-2021 Erik Baauw. All rights reserved.
 //
 // Logger for UPnP device announcements.
 
@@ -15,7 +15,7 @@ const chalk = require('chalk')
 
 const b = chalk.bold
 const u = chalk.underline
-const usage = `${b('upnp')} [${b('-hVadnrsz')}] [${b('-c')} ${u('class')}] [${b('-t')} ${u('timeout')}]`
+const usage = `${b('upnp')} [${b('-hVDadnrsz')}] [${b('-c')} ${u('class')}] [${b('-t')} ${u('timeout')}]`
 const help = `UPnP tool.
 
 Search for UPnP devices and print found devices as JSON.
@@ -29,6 +29,9 @@ Parameters:
 
   ${b('-V')}, ${b('--version')}
   Print version and exit.
+
+  ${b('-D')}, ${b('--debug')}
+  Print debug messages.
 
   ${b('-a')}, ${b('--all')}
   Short for ${b('-c ssdp:all')}.
@@ -68,6 +71,7 @@ class Main extends homebridgeLib.CommandLineTool {
     const parser = new homebridgeLib.CommandLineParser()
     parser.help('h', 'help', help)
     parser.version('V', 'version')
+    parser.flag('D', 'debug', () => { this.setOptions({ debug: true }) })
     parser.flag('a', 'all', (key) => { this.upnp.class = 'ssdp:all' })
     parser.option('c', 'class', (value, key) => { this.upnp.class = value })
     parser.flag('d', 'daemon', (key) => { this.options.mode = 'daemon' })
@@ -86,7 +90,8 @@ class Main extends homebridgeLib.CommandLineTool {
   }
 
   exit (signal) {
-    this.log('got %s - exiting', signal)
+    this.debug('got %s - exiting', signal)
+    this.upnpClient.stopListen()
     process.exit(0)
   }
 
@@ -96,30 +101,40 @@ class Main extends homebridgeLib.CommandLineTool {
       const jsonFormatter = new homebridgeLib.JsonFormatter({
         noWhiteSpace: this.options.noWhiteSpace
       })
-      const unpnClient = new homebridgeLib.UpnpClient(this.upnp)
-      process.on('SIGINT', () => { this.exit('SIGINT') })
-      process.on('SIGTERM', () => { this.exit('SIGTERM') })
-      unpnClient.on('listening', (host) => { this.log('listening on %s', host) })
-      unpnClient.on('deviceAlive', (address, obj, message) => {
-        if (!this.options.raw) {
-          message = jsonFormatter.stringify(obj)
-        }
-        this.log('%s: %s', address, message)
-      })
-      unpnClient.on('searching', (host) => { this.log('searching on %s', host) })
-      unpnClient.on('searchDone', () => { this.log('search done') })
-      unpnClient.on('deviceFound', (address, obj, message) => {
-        if (!this.options.raw) {
-          message = jsonFormatter.stringify(obj)
-        }
-        this.print('%s: %s', address, message)
-      })
-      unpnClient.on('error', (error) => { this.error(error) })
+      this.upnpClient = new homebridgeLib.UpnpClient(this.upnp)
+      process
+        .on('SIGINT', () => { this.exit('SIGINT') })
+        .on('SIGTERM', () => { this.exit('SIGTERM') })
+      this.upnpClient
+        .on('error', (error) => { this.error(error) })
+        .on('listening', (host) => { this.debug('listening on %s', host) })
+        .on('stopListening', (host) => { this.debug('stopped listening on %s', host) })
+        .on('deviceAlive', (address, obj, message) => {
+          if (!this.options.raw) {
+            message = jsonFormatter.stringify(obj)
+          }
+          this.log('%s: %s', address, message)
+        })
+        .on('searching', (host) => { this.debug('listening on %s', host) })
+        .on('request', (request) => {
+          this.debug(
+            '%s: request %d: %s %s', request.host, request.id,
+            request.method, request.resource
+          )
+        })
+        .on('searchDone', (host) => { this.debug('search done') })
+        .on('deviceFound', (address, obj, message) => {
+          if (!this.options.raw) {
+            message = jsonFormatter.stringify(obj)
+          }
+          this.print('%s: %s', address, message)
+        })
+
       if (this.options.mode) {
         this.setOptions({ mode: this.options.mode })
-        unpnClient.listen()
+        this.upnpClient.listen()
       } else {
-        unpnClient.search()
+        this.upnpClient.search()
       }
     } catch (error) {
       this.fatal(error)
