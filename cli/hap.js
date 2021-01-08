@@ -11,7 +11,7 @@
 
 const homebridgeLib = require('../index')
 
-const Bonjour = require('bonjour')
+const Bonjour = require('bonjour-hap')
 const chalk = require('chalk')
 
 const b = chalk.bold
@@ -38,16 +38,17 @@ class Main extends homebridgeLib.CommandLineTool {
 
   parseArguments () {
     const parser = new homebridgeLib.CommandLineParser()
-    parser.help('h', 'help', help)
-    parser.version('V', 'version')
-    parser.flag('l', 'listen', (key) => { this.options.mode = 'daemon' })
-    parser.flag('s', 'service', (key) => { this.options.mode = 'service' })
-    parser.option('t', 'timeout', (value, key) => {
-      this.options.timeout = homebridgeLib.OptionParser.toInt(
-        'timeout', value, 1, 60, true
-      )
-    })
-    parser.parse()
+    parser
+      .help('h', 'help', help)
+      .version('V', 'version')
+      .flag('l', 'listen', (key) => { this.options.mode = 'daemon' })
+      .flag('s', 'service', (key) => { this.options.mode = 'service' })
+      .option('t', 'timeout', (value, key) => {
+        this.options.timeout = homebridgeLib.OptionParser.toInt(
+          'timeout', value, 1, 60, true
+        )
+      })
+      .parse()
   }
 
   exit (signal) {
