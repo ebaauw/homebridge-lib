@@ -24,7 +24,7 @@
     "node": "^14.15.4"
   },
   "dependencies": {
-    "bonjour": "^3.5.0",
+    "bonjour-hap": "^3.6.2",
     "chalk": "^4.1.0",
     "semver": "^7.3.4"
   },
