@@ -1,7 +1,7 @@
 // homebridge-lib/doc/homebridge.js
 //
 // Library for Homebridge plugins.
-// Copyright © 2017-2020 Erik Baauw. All rights reserved.
+// Copyright © 2017-2021 Erik Baauw. All rights reserved.
 
 'use strict'
 
@@ -10,13 +10,18 @@
 // Following "code" is just for generating documentation references for the
 // homebridge classes used by homebridge-lib.
 
-/** Homebridge API for dynamic platform plugins
+/** Homebridge API for dynamic platform plugins.
   *
   * From {@link module:homebridge homebridge}.
   *
+  * Plugins based on Homebrdige Lib don't need to interact with `API`
+  * themselves.
+  * This is handled by {@link Platform} {@link AccessoryDelegate},
+  * {@link ServiceDelegate}, and {@link CharacteristicDelegate}.
+  *
   * @class
   * @hideconstructor
-  * @see https://github.com/nfarina/homebridge/blob/master/lib/api.js
+  * @see https://github.com/homebridge/homebridge/blob/master/src/api.ts
   */
 class API {
   /** Emitted when homebridge has started its HAP server.
@@ -45,6 +50,11 @@ class API {
   * Homebridge creates a logger instance for each plugin, and passes it to
   * {@link Plugin#constructor}.
   *
+  * Plugins based on Homebrdige Lib don't need to interact with `Logger`
+  * themselves.
+  * This is handled by {@link Platform} {@link AccessoryDelegate},
+  * {@link ServiceDelegate}, and {@link CharacteristicDelegate}.
+  *
   * @class
   * @hideconstructor
   * @see https://github.com/homebridge/homebridge/blob/master/src/logger.ts
@@ -59,8 +69,9 @@ class Logger {}
   * It contains one or more logical devices, or HomeKit services
   * (see {@link Accessory}).
   *
-  * Plugins don't need to instantiate `PlatformAccessory` themselves.
-  * The corresponding {@link AccessoryDelegate} takes care of this.
+  * Plugins based on Homebrdige Lib don't need to interact with
+  * `PlatformAccessory` themselves.
+  * This is handled by {@link Platform} and {@link AccessoryDelegate}.
   *
   * @class
   * @hideconstructor
@@ -99,18 +110,13 @@ class PlatformAccessory {}
   * - Dynamic platform plugins that use the Homebridge {@link API} to create
   * and remove accessories, after Homebridge has started its HAP server.
   * The plugin creates a {@link PlatformAccessory} instance and calls
-  * {@link API#registerPlatformAccessories}
+  * {@link API#registerPlatformAccessories registerPlatformAccessories()}.
   * Homebridge creates the associated {@link Accessory}
   * Homebridge perists previously exposed accessories, and re-creates them
   * before starting its HAP server.
   *
-  * A HomeKit accessory is a physical device, exposed to HomeKit.
-  * It contains one or more logical devices, or HomeKit services
-  * (see {@link Service}).
-  *
-  * Plugins don't need to instantiate `Accessory` themselves.
-  * The corresponding {@link AccessoryDelegate} takes care of this, through
-  * {@link PlatformAccessory}.
+  * Plugins based on Homebridge Lib are dynamic platform plugins.
+  * The logic to register and start the plugin is handled by {@link Platform}.
   *
   * @class
   * @see https://github.com/homebridge/homebridge/blob/master/src/plugin.ts
@@ -151,7 +157,7 @@ class Plugin {
   * @property {Class} Plugin - Class for a Homebridge plugin.
   * See {@link Plugin}
   * @see https://homebridge.io
-  * @see https://github.com/HomeBridge/homebridge
+  * @see https://github.com/homebridge/homebridge
   */
 class homebridge {}
 
