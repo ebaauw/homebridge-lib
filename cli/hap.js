@@ -3,7 +3,7 @@
 // homebridge-lib/cli/hap.js
 //
 // Library for Homebridge plugins.
-// Copyright © 2018-2020 Erik Baauw. All rights reserved.
+// Copyright © 2018-2021 Erik Baauw. All rights reserved.
 //
 // Logger for HomeKit accessory announcements.
 
@@ -88,8 +88,9 @@ class Main extends homebridgeLib.CommandLineTool {
       // })
       // const browser6 = bonjour6.find({ type: 'hap' })
       // browser6.on('up', this.onUp.bind(this))
-      process.on('SIGINT', () => { this.exit('SIGINT') })
-      process.on('SIGTERM', () => { this.exit('SIGTERM') })
+      process
+        .on('SIGINT', () => { this.exit('SIGINT') })
+        .on('SIGTERM', () => { this.exit('SIGTERM') })
     } catch (error) {
       this.fatal(error)
     }
