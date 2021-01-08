@@ -69,24 +69,25 @@ class Main extends homebridgeLib.CommandLineTool {
 
   parseArguments () {
     const parser = new homebridgeLib.CommandLineParser()
-    parser.help('h', 'help', help)
-    parser.version('V', 'version')
-    parser.flag('D', 'debug', () => { this.setOptions({ debug: true }) })
-    parser.flag('a', 'all', (key) => { this.upnp.class = 'ssdp:all' })
-    parser.option('c', 'class', (value, key) => { this.upnp.class = value })
-    parser.flag('d', 'daemon', (key) => { this.options.mode = 'daemon' })
-    parser.flag('n', 'noWhiteSpace', () => { this.options.noWhiteSpace = true })
-    parser.flag('r', 'raw', (key) => { this.options.raw = true })
-    parser.flag('s', 'service', (key) => { this.options.mode = 'service' })
-    parser.option('t', 'timeout', (value, key) => {
-      this.upnp.timeout = homebridgeLib.OptionParser.toInt(
-        'timeout', value, 1, 60, true
-      )
-    })
-    parser.flag('z', 'ZonePlayer', (key) => {
-      this.upnp.class = 'urn:schemas-upnp-org:device:ZonePlayer:1'
-    })
-    parser.parse()
+    parser
+      .help('h', 'help', help)
+      .version('V', 'version')
+      .flag('D', 'debug', () => { this.setOptions({ debug: true }) })
+      .flag('a', 'all', (key) => { this.upnp.class = 'ssdp:all' })
+      .option('c', 'class', (value, key) => { this.upnp.class = value })
+      .flag('d', 'daemon', (key) => { this.options.mode = 'daemon' })
+      .flag('n', 'noWhiteSpace', () => { this.options.noWhiteSpace = true })
+      .flag('r', 'raw', (key) => { this.options.raw = true })
+      .flag('s', 'service', (key) => { this.options.mode = 'service' })
+      .option('t', 'timeout', (value, key) => {
+        this.upnp.timeout = homebridgeLib.OptionParser.toInt(
+          'timeout', value, 1, 60, true
+        )
+      })
+      .flag('z', 'ZonePlayer', (key) => {
+        this.upnp.class = 'urn:schemas-upnp-org:device:ZonePlayer:1'
+      })
+      .parse()
   }
 
   exit (signal) {
