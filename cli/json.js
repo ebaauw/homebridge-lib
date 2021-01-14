@@ -11,11 +11,10 @@
 
 const homebridgeLib = require('../index')
 
-const chalk = require('chalk')
 const fs = require('fs')
 
-const b = chalk.bold
-const u = chalk.underline
+const { b, u } = homebridgeLib.CommandLineTool
+
 const usage = `${b('json')} [${b('-hVsnjuatlkv')}] [${b('-p')} path] [${b('-d')} depth] [${b('-c')} ${u('string')}]... [${u('file')}]...`
 const help = `JSON formatter.
 
