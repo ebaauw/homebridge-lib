@@ -12,10 +12,9 @@
 const homebridgeLib = require('../index')
 
 const Bonjour = require('bonjour-hap')
-const chalk = require('chalk')
 
-const b = chalk.bold
-const u = chalk.underline
+const { b, u } = homebridgeLib.CommandLineTool
+
 const usage = `${b('hap')} [${b('-hVlrs')}] [${b('-t')} ${u('timeout')}]`
 const help = `Logger for HomeKit accessory announcements.
 
@@ -25,7 +24,7 @@ Search for HomeKit accessory announcements
 Parameters:
   ${b('-h')}          Print this help and exit.
   ${b('-V')}          Print version and exit.
-  ${b('-l')}          Listen for Bonjour alive broadcasts instead of searching.
+  ${b('-d')}          Listen for Bonjour alive broadcasts instead of searching.
   ${b('-s')}          Do not output timestamps (useful when running as service).
   ${b('-t')} ${u('timeout')}  Search for ${u('timeout')} seconds instead of default ${b('5')}.`
 
@@ -49,11 +48,6 @@ class Main extends homebridgeLib.CommandLineTool {
         )
       })
       .parse()
-  }
-
-  exit (signal) {
-    this.log('got %s - exiting', signal)
-    process.exit(0)
   }
 
   onUp (obj) {
@@ -89,9 +83,6 @@ class Main extends homebridgeLib.CommandLineTool {
       // })
       // const browser6 = bonjour6.find({ type: 'hap' })
       // browser6.on('up', this.onUp.bind(this))
-      process
-        .on('SIGINT', () => { this.exit('SIGINT') })
-        .on('SIGTERM', () => { this.exit('SIGTERM') })
     } catch (error) {
       this.fatal(error)
     }
