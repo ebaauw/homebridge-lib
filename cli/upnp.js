@@ -11,11 +11,9 @@
 
 const homebridgeLib = require('../index')
 
-const chalk = require('chalk')
+const { b, u } = homebridgeLib.CommandLineTool
 
-const b = chalk.bold
-const u = chalk.underline
-const usage = `${b('upnp')} [${b('-hVDadnrsz')}] [${b('-c')} ${u('class')}] [${b('-t')} ${u('timeout')}]`
+const usage = `${b('upnp')} [${b('-hVDadnprsz')}] [${b('-c')} ${u('class')}] [${b('-t')} ${u('timeout')}]`
 const help = `UPnP tool.
 
 Search for UPnP devices and print found devices as JSON.
@@ -45,6 +43,9 @@ Parameters:
   ${b('-n')}, ${b('--noWhiteSpace')}
   Do not include spaces nor newlines in JSON output.
 
+  ${b('-p')}, ${b('--hue')}
+  Search for Philips Hue bridges and/or deCONZ gateways.
+
   ${b('-r')}, ${b('--raw')}
   Do not parse messages, output raw message data instead of JSON.
 
@@ -54,8 +55,8 @@ Parameters:
   ${b('-t')} ${u('timeout')}, ${b('--timeout=')}${u('timeout')}
   Search for ${u('timeout')} seconds instead of default ${b('5')}.
 
-  ${b('-z')}, ${b('--ZonePlayer')}
-  Short for ${b('-c urn:schemas-upnp-org:device:ZonePlayer:1')}.`
+  ${b('-z')}, ${b('--sonos')}
+  Search for Sonos Zone Players.`
 
 class Main extends homebridgeLib.CommandLineTool {
   constructor () {
@@ -84,16 +85,22 @@ class Main extends homebridgeLib.CommandLineTool {
           'timeout', value, 1, 60, true
         )
       })
-      .flag('z', 'ZonePlayer', (key) => {
+      .flag('p', 'hue', (key) => {
+        this.upnp.filter = (message) => {
+          return /^[0-9A-F]{16}$/.test(message['hue-bridgeid'])
+        }
+      })
+      .flag('z', 'sonos', (key) => {
         this.upnp.class = 'urn:schemas-upnp-org:device:ZonePlayer:1'
       })
       .parse()
   }
 
-  exit (signal) {
-    this.debug('got %s - exiting', signal)
-    this.upnpClient.stopListen()
-    process.exit(0)
+  async destroy () {
+    if (this.upnpClient == null) {
+      return
+    }
+    return this.upnpClient.stopListen()
   }
 
   main () {
@@ -103,9 +110,6 @@ class Main extends homebridgeLib.CommandLineTool {
         noWhiteSpace: this.options.noWhiteSpace
       })
       this.upnpClient = new homebridgeLib.UpnpClient(this.upnp)
-      process
-        .on('SIGINT', () => { this.exit('SIGINT') })
-        .on('SIGTERM', () => { this.exit('SIGTERM') })
       this.upnpClient
         .on('error', (error) => { this.error(error) })
         .on('listening', (host) => { this.debug('listening on %s', host) })
