@@ -581,15 +581,24 @@ describe('OptionParser', function () {
       { v: 'localhost:80', s: { hostname: 'localhost', port: 80 } },
       { v: '127.0.0.1', s: { hostname: '127.0.0.1' } },
       { v: '127.0.0.1:80', s: { hostname: '127.0.0.1', port: 80 } },
+      { v: '[::1]', s: { hostname: '[::1]' } },
+      { v: '[::1]:80', s: { hostname: '[::1]', port: 80 } },
+      { v: 'localhost', p1: true, s: 'localhost' },
+      { v: 'localhost:80', p1: true, s: 'localhost:80' },
+      { v: '127.0.0.1', p1: true, s: '127.0.0.1' },
+      { v: '127.0.0.1:80', p1: true, s: '127.0.0.1:80' },
+      { v: '[::1]', p1: true, s: '[::1]' },
+      { v: '[::1]:80', p1: true, s: '[::1]:80' },
       { e: new TypeError('key: missing string value') },
       { v: null, e: new TypeError('key: missing string value') },
       { v: '', e: new RangeError('key: not a non-empty string') },
       { v: '@', e: new RangeError('key: @: not a valid hostname or IPv4 address') },
+      { v: '[0::0::1]', e: new RangeError('key: [0::0::1]: not a valid IPv6 address') },
       { v: 'localhost:80:80', e: new RangeError('key: not a valid host') },
-      { v: ':80', e: new RangeError('key: missing hostname or IPv4 address') },
-      { v: 'localhost:', e: new RangeError('key: missing port') },
-      { v: 'localhost:x', e: new TypeError('key: x: not an integer') },
-      { v: 'localhost:100000', e: new RangeError('key: 100000: not a valid port') }
+      { v: ':80', e: new RangeError('key: not a valid host') },
+      { v: 'localhost:', e: new RangeError('key: not a valid host') },
+      { v: 'localhost:x', e: new RangeError('key: not a valid host') },
+      { v: 'localhost:99999', e: new RangeError('key: 99999: not a valid port') }
     ])
   })
 })

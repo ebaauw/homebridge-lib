@@ -6,6 +6,7 @@
 'use strict'
 
 const chalk = require('chalk')
+const net = require('net')
 
 // Force colors when output is re-directed.
 chalk.enabled = true
@@ -231,7 +232,13 @@ class homebridgeLib {
       } else if (e.dest != null) {
         label = e.dest
       } else if (e.address != null) {
-        label = e.address + (e.port == null ? '' : ':' + e.port)
+        label = e.address
+        if (net.isIPv6(label)) {
+          label = '[' + label + ']'
+        }
+        if (e.port != null) {
+          label += ':' + e.port
+        }
       } else if (e.port != null) {
         label = '' + e.port
       } else if (e.hostname != null) {
