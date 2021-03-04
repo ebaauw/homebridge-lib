@@ -95,7 +95,7 @@ class Main extends homebridgeLib.CommandLineTool {
     }
   }
 
-  main () {
+  async main () {
     try {
       this.parseArguments()
       this.jsonFormatter = new homebridgeLib.JsonFormatter(this.options)
@@ -119,7 +119,7 @@ class Main extends homebridgeLib.CommandLineTool {
         }
       })
     } catch (error) {
-      this.fatal(error)
+      await this.fatal(error)
     }
   }
 }
