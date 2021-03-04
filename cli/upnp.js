@@ -103,7 +103,7 @@ class Main extends homebridgeLib.CommandLineTool {
     return this.upnpClient.stopListen()
   }
 
-  main () {
+  async main () {
     try {
       this.parseArguments()
       const jsonFormatter = new homebridgeLib.JsonFormatter({
@@ -142,7 +142,7 @@ class Main extends homebridgeLib.CommandLineTool {
         this.upnpClient.search()
       }
     } catch (error) {
-      this.fatal(error)
+      await this.fatal(error)
     }
   }
 }
