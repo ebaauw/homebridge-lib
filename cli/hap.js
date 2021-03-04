@@ -55,7 +55,7 @@ class Main extends homebridgeLib.CommandLineTool {
     this.log('found accessory: %s', obj.name, this.jsonFormatter.stringify(obj))
   }
 
-  main () {
+  async main () {
     try {
       this.parseArguments()
       this.jsonFormatter = new homebridgeLib.JsonFormatter(
@@ -84,7 +84,7 @@ class Main extends homebridgeLib.CommandLineTool {
       // const browser6 = bonjour6.find({ type: 'hap' })
       // browser6.on('up', this.onUp.bind(this))
     } catch (error) {
-      this.fatal(error)
+      await this.fatal(error)
     }
   }
 }
