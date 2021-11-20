@@ -30,6 +30,8 @@ function isNodejsError (e) {
   return typeof e.code === 'string' && e.code.startsWith('ERR_')
 }
 
+const zeroes = '00000000000000000000000000000000'
+
 /** Library for Homebridge plugins.
   * see the {@tutorial homebridgeLib} tutorial.
   *
@@ -180,6 +182,13 @@ class homebridgeLib {
     */
   static get ServiceDelegate () { return require('./lib/ServiceDelegate') }
 
+  /** System information.
+    * <br>See {@link SystemInfo}.
+    * @type {Class}
+    * @memberof module:homebridgeLib
+    */
+  static get SystemInfo () { return require('./lib/SystemInfo') }
+
   /** Universal Plug and Play client.
     * <br>See {@link UpnpClient}.
     * @type {Class}
@@ -257,6 +266,16 @@ class homebridgeLib {
       return e.message.slice(0, e.message.length - 1)
     }
     return e.message
+  }
+
+  /** Convert integer to hex string.
+    * @param {integer} i - The integer.
+    * @param {integer} [length=4] - The number of digits in the hex string.
+    * @returns {string} - The hex string.
+    * @memberof module:homebridgeLib
+    */
+  static toHexString (i, length = 4) {
+    return (zeroes + i.toString(16)).slice(-length).toUpperCase()
   }
 }
 
