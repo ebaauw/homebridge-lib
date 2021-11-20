@@ -28,11 +28,12 @@ See [Homebridge WS](https://github.com/ebaauw/homebridge-ws) for an example plug
 ### Command-Line Tools
 The Homebridge Lib library comes with a number of command-line tools for troubleshooting Homebridge installations.
 
-Tool    | Description
-------- | -----------
-`hap`   | Logger for HomeKit accessory announcements.
-`json`  | JSON formatter.
-`upnp`  | UPnP tool.
+Tool      | Description
+--------- | -----------
+`hap`     | Logger for HomeKit accessory announcements.
+`json`    | JSON formatter.
+`sysinfo` | Print hardware and operating system information.
+`upnp`    | UPnP tool.
 
 Each command-line tool takes a `-h` or `--help` argument to provide a brief overview of its functionality and command-line arguments.
 
