@@ -1,9 +1,14 @@
 {
-  "plugins": ["plugins/markdown"],
+  "plugins": [
+    "plugins/markdown"
+  ],
   "rescurseDepth": 10,
   "source": {
     "include": [
-      "README.md", "index.js", "lib", "doc"
+      "README.md",
+      "index.js",
+      "lib",
+      "doc"
     ]
   },
   "opts": {
