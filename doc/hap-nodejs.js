@@ -1,7 +1,7 @@
 // homebridge-lib/doc/hap-nodejs.js
 //
 // Library for Homebridge plugins.
-// Copyright © 2017-2021 Erik Baauw. All rights reserved.
+// Copyright © 2017-2022 Erik Baauw. All rights reserved.
 
 'use strict'
 
