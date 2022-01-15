@@ -175,6 +175,13 @@ class homebridgeLib {
     */
   static get Platform () { return require('./lib/Platform') }
 
+  /** Delegate of a property of a HomeKit accessory or service.
+    * <br>See {@link PropertyDelegate}.
+    * @type {Class}
+    * @memberof module:homebridgeLib
+    */
+  static get PropertyDelegate () { return require('./lib/PropertyDelegate') }
+
   /** Delegate of a HomeKit service.
     * <br>See {@link ServiceDelegate}.
     * @type {Class}
