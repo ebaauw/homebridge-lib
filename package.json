@@ -22,7 +22,7 @@
   },
   "engines": {
     "homebridge": "^1.4.0",
-    "node": "^16.13.2"
+    "node": "^16.14.0"
   },
   "dependencies": {
     "bonjour-hap": "^3.6.3",
