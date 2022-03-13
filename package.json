@@ -25,6 +25,7 @@
     "node": "^16.14.0"
   },
   "dependencies": {
+    "@homebridge/plugin-ui-utils": "~0.0.19",
     "bonjour-hap": "^3.6.3",
     "chalk": "^4.1.2",
     "semver": "^7.3.5"
