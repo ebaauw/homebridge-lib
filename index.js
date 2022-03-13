@@ -196,6 +196,13 @@ class homebridgeLib {
     */
   static get SystemInfo () { return require('./lib/SystemInfo') }
 
+  /** Server for dynamic configuration settings through Homebridge UI.
+    * <br>See {@link UiServer}.
+    * @type {Class}
+    * @memberof module:homebridgeLib
+    */
+  static get UiServer () { return require('./lib/UiServer') }
+
   /** Universal Plug and Play client.
     * <br>See {@link UpnpClient}.
     * @type {Class}
