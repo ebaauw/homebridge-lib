@@ -22,7 +22,7 @@
   },
   "engines": {
     "homebridge": "^1.4.0",
-    "node": "^16.14.0"
+    "node": "^16.14.2"
   },
   "dependencies": {
     "@homebridge/plugin-ui-utils": "~0.0.19",
