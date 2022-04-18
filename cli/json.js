@@ -12,6 +12,10 @@
 const homebridgeLib = require('../index')
 
 const fs = require('fs')
+const util = require('util')
+const zlib = require('zlib')
+
+const gunzip = util.promisify(zlib.unzip)
 
 const { b, u } = homebridgeLib.CommandLineTool
 
@@ -21,26 +25,59 @@ const help = `JSON formatter.
 Usage: ${usage}
 
 By default, ${b('json')} reads JSON from stdin, formats it, and prints it to stdout.
-The following parameters modify this behaviour:
-  ${b('-h')}          Print this help and exit.
-  ${b('-V')}          Print version and exit.
-  ${b('-s')}          Sort object key/value pairs alphabetically on key.
-  ${b('-n')}          Do not include spaces nor newlines in output.
-  ${b('-j')}          Output JSON array of objects for each key/value pair.
-              Each object contains two key/value pairs: key "keys" with an array
-              of keys as value and key "value" with the value as value.
-  ${b('-u')}          Output JSON array of objects for each key/value pair.
-              Each object contains one key/value pair: the path (concatenated
-              keys separated by '/') as key and the value as value.
-  ${b('-a')}          Output path:value in plain text instead of JSON.
-  ${b('-t')}          Limit output to top-level key/values.
-  ${b('-p')} ${u('path')}     Limit output to key/values under ${u('path')}. Set top level below ${u('path')}.
-  ${b('-d')} ${u('depth')}    Limit output to levels above ${u('depth')}.
-  ${b('-l')}          Limit output to leaf (non-array, non-object) key/values.
-  ${b('-k')}          Limit output to keys. With ${b('-u')} output JSON array of paths.
-  ${b('-v')}          Limit output to values. With ${b('-u')} output JSON array of values.
-  ${b('-c')} ${u('string')}   Read JSON from ${u('string')} instead of from stdin.
-  ${u('file')}        Read JSON from ${u('file')} instead of from stdin.`
+
+Parameters:
+  ${b('-h')}, ${b('--help')}
+  Print this help and exit.
+
+  ${b('-V')}, ${b('--version')}
+  Print version and exit.
+
+  ${b('-s')}, ${b('--sortKeys')}
+  Sort object key/value pairs alphabetically on key.
+
+  ${b('-n')}, ${b('--noWhiteSpace')}
+  Do not include spaces nor newlines in output.
+
+  ${b('-j')}, ${b('--jsonArray')}
+  Output JSON array of objects for each key/value pair.
+  Each object contains two key/value pairs:
+  - key ${b('keys')} with an array of keys as value;
+  - key ${b('value')} with the value as value.
+
+  ${b('-u')}, ${b('--joinKeys')}
+  Output JSON array of objects for each key/value pair.
+  Each object contains one key/value pair:
+  the path (concatenated keys separated by ${b('/')} as key and the value as value.
+
+  ${b('-a')}, ${b('--ascii')}
+  Output ${u('path')}${b(':')}${u('value')} in plain text instead of JSON.
+
+  ${b('-t')}, ${b('--topOnly')}
+  Limit output to top-level key/values.
+
+  ${b('-p')} ${u('path')}, ${b('--fromPath=')}${u('path')}
+  Limit output to key/values under ${u('path')}. Set top level below ${u('path')}.
+
+  ${b('-d')} ${u('depth')}, ${b('--maxDepth=')}${u('depth')}
+  Limit output to levels above ${u('depth')}.
+
+  ${b('-l')}, ${b('--leavesOnly')}
+  Limit output to leaf (non-array, non-object) key/values.
+
+  ${b('-k')}, ${b('--keysOnly')}
+  Limit output to keys. With ${b('-u')} output JSON array of paths.
+
+  ${b('-v')}, ${b('--valuesOnly')}
+  Limit output to values. With ${b('-u')} output JSON array of values.
+
+  ${b('-c')} ${u('string')}, ${b('--string=')}${u('string')}
+  Read JSON from ${u('string')} instead of from stdin.
+
+  ${u('file')}
+  Read JSON from ${u('file')} instead of from stdin.
+  When the file name ends in ${b('.gz')}, it is assumed to be a gzip file and
+  uncompressed automatically.`
 
 class Main extends homebridgeLib.CommandLineTool {
   constructor () {
@@ -110,9 +147,11 @@ class Main extends homebridgeLib.CommandLineTool {
           this.error(error)
         }
       })
-      this.fileList.forEach((file) => {
+      this.fileList.forEach(async (file) => {
         try {
-          const s = fs.readFileSync(file === '-' ? 0 : file, 'utf8')
+          const s = file.endsWith('.gz')
+            ? await gunzip(fs.readFileSync(file))
+            : fs.readFileSync(file === '-' ? 0 : file, 'utf8')
           this.processString(s)
         } catch (error) {
           this.error(error)
