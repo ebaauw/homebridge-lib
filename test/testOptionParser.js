@@ -525,7 +525,7 @@ describe('OptionParser', function () {
       { v: object, p1: A, e: new TypeError('key: not an instance of A') },
       { v: f, p1: A, e: new TypeError('key: not an instance of A') },
       { v: g, p1: A, e: new TypeError('key: not an instance of A') },
-      { v: a, p1: A, a: a },
+      { v: a, p1: A, s: a },
       { v: A, p1: A, e: new TypeError('key: not an instance of A') },
 
       // Specific values.
