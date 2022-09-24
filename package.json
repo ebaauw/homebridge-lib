@@ -22,11 +22,11 @@
   },
   "engines": {
     "homebridge": "^1.5.0",
-    "node": "^16.17.0"
+    "node": "^16.17.1"
   },
   "dependencies": {
     "@homebridge/plugin-ui-utils": "~0.0.19",
-    "bonjour-hap": "^3.6.3",
+    "bonjour-hap": "^3.6.4",
     "chalk": "^4.1.2",
     "semver": "^7.3.7"
   },
