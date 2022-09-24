@@ -291,6 +291,11 @@ class homebridgeLib {
   static toHexString (i, length = 4) {
     return (zeroes + i.toString(16)).slice(-length).toUpperCase()
   }
+
+  /** Return the `semver` library, so plugins don't have to list this as a
+    * separate dependency.
+    */
+  static get semver () { return require('semver') }
 }
 
 module.exports = homebridgeLib
