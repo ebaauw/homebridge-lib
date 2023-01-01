@@ -65,6 +65,7 @@ class Accessory {
     * @property {Category} AIR_HUMIDIFIER
     * @property {Category} AIR_DEHUMIDIFIER
     * @property {Category} APPLE_TV
+    * @property {Category} HOMEPOD
     * @property {Category} SPEAKER
     * @property {Category} AIRPORT
     * @property {Category} SPRINKLER
@@ -74,6 +75,8 @@ class Accessory {
     * @property {Category} TARGET_CONTROLLER
     * @property {Category} ROUTER
     * @property {Category} AUDIO_RECEIVER
+    * @property {Category} TV_SET_TOP_BOX
+    * @property {Category} TV_STREAMING_STICK
     */
   static get Categories () {}
 }
@@ -189,9 +192,7 @@ class Characteristic {
     *
     * @type {Object}
     * @property {Perm} PAIRED_READ - Paired Read.
-    * @property {Perm} READ - Paired Read.
     * @property {Perm} PAIRED_WRITE - Paired Write.
-    * @property {Perm} WRITE - Paired Write.
     * @property {Perm} EVENTS - Events.
     * @property {Perm} NOTIFY - Events.
     * @property {Perm} ADDITIONAL_AUTHORIZATION - Additional Authorization.
@@ -279,7 +280,7 @@ class HapNodeJs {
 
   /** Abstract superclass for a HomeKit service.
     * <br>See {@link Service}.
-    * @type {Class}
+    * @type {Class}ex
     * @memberof module:hap-nodejs
     */
   static get Service () {}
@@ -297,21 +298,26 @@ class HapNodeJs {
     *
     * @type {Object}
     * @memberof module:hap-nodejs
+    * @property {Class} Services.AccessCode
     * @property {Class} Services.AccessControl
     * @property {Class} Services.AccessoryInformation
+    * @property {Class} Services.AccessoryMetrics
     * @property {Class} Services.AccessoryRuntimeInformation
     * @property {Class} Services.AirPurifier
     * @property {Class} Services.AirQualitySensor
+    * @property {Class} Services.AssetUpdate
+    * @property {Class} Services.Assistant
     * @property {Class} Services.AudioStreamManagement
-    * @property {Class} Services.BatteryService
+    * @property {Class} Services.Battery
     * @property {Class} Services.BridgeConfiguration
     * @property {Class} Services.BridgingState
     * @property {Class} Services.CameraControl
-    * @property {Class} Services.CameraEventRecordingManagement
     * @property {Class} Services.CameraOperatingMode
+    * @property {Class} Services.CameraRecordingManagement
     * @property {Class} Services.CameraRTPStreamManagement
     * @property {Class} Services.CarbonDioxideSensor
     * @property {Class} Services.CarbonMonoxideSensor
+    * @property {Class} Services.CloudRelay
     * @property {Class} Services.ContactSensor
     * @property {Class} Services.DataStreamTransportManagement
     * @property {Class} Services.Diagnostics
@@ -321,6 +327,7 @@ class HapNodeJs {
     * @property {Class} Services.Fanv2
     * @property {Class} Services.Faucet
     * @property {Class} Services.FilterMaintenance
+    * @property {Class} Services.FirmwareUpdate
     * @property {Class} Services.GarageDoorOpener
     * @property {Class} Services.HeaterCooler
     * @property {Class} Services.HumidifierDehumidifier
@@ -328,44 +335,47 @@ class HapNodeJs {
     * @property {Class} Services.InputSource
     * @property {Class} Services.IrrigationSystem
     * @property {Class} Services.LeakSensor
-    * @property {Class} Services.LightSensor
     * @property {Class} Services.Lightbulb
+    * @property {Class} Services.LightSensor
     * @property {Class} Services.LockManagement
     * @property {Class} Services.LockMechanism
     * @property {Class} Services.Microphone
     * @property {Class} Services.MotionSensor
+    * @property {Class} Services.NFCAccess
     * @property {Class} Services.OccupancySensor
     * @property {Class} Services.Outlet
     * @property {Class} Services.Pairing
     * @property {Class} Services.PowerManagement
     * @property {Class} Services.ProtocolInformation
-    * @property {Class} Services.Relay
     * @property {Class} Services.SecuritySystem
     * @property {Class} Services.ServiceLabel
     * @property {Class} Services.Siri
-    * @property {Class} Services.Slat
+    * @property {Class} Services.SiriEndpoint
+    * @property {Class} Services.Slats
     * @property {Class} Services.SmartSpeaker
     * @property {Class} Services.SmokeSensor
     * @property {Class} Services.Speaker
     * @property {Class} Services.StatefulProgrammableSwitch
     * @property {Class} Services.StatelessProgrammableSwitch
     * @property {Class} Services.Switch
+    * @property {Class} Services.TapManagement
     * @property {Class} Services.TargetControl
     * @property {Class} Services.TargetControlManagement
     * @property {Class} Services.Television
     * @property {Class} Services.TelevisionSpeaker
     * @property {Class} Services.TemperatureSensor
     * @property {Class} Services.Thermostat
+    * @property {Class} Services.ThreadTransport
     * @property {Class} Services.TimeInformation
     * @property {Class} Services.TransferTransportManagement
-    * @property {Class} Services.TunneledBTLEAccessoryService
+    * @property {Class} Services.Tunnel
     * @property {Class} Services.Valve
     * @property {Class} Services.WiFiRouter
     * @property {Class} Services.WiFiSatellite
     * @property {Class} Services.WiFiTransport
     * @property {Class} Services.Window
     * @property {Class} Services.WindowCovering
-    * @see https://github.com/homebridge/HAP-NodeJS/blob/master/src/lib/gen
+    * @see https://github.com/homebridge/HAP-NodeJS/blob/master/src/lib/definitions/ServiceDefinitions.ts
     */
   static get Services () {}
 
@@ -376,6 +386,8 @@ class HapNodeJs {
     *
     * @type {Object}
     * @memberof module:hap-nodejs
+    * @property {Class} Characteristics.AccessCodeControlPoint
+    * @property {Class} Characteristics.AccessCodeSupportedConfiguration
     * @property {Class} Characteristics.AccessControlLevel
     * @property {Class} Characteristics.AccessoryFlags
     * @property {Class} Characteristics.AccessoryIdentifier
@@ -385,14 +397,14 @@ class HapNodeJs {
     * @property {Class} Characteristics.AdministratorOnlyAccess
     * @property {Class} Characteristics.AirParticulateDensity
     * @property {Class} Characteristics.AirParticulateSize
+    * @property {Class} Characteristics.AirPlayEnable
     * @property {Class} Characteristics.AirQuality
     * @property {Class} Characteristics.AppMatchingIdentifier
+    * @property {Class} Characteristics.AssetUpdateReadiness
     * @property {Class} Characteristics.AudioFeedback
     * @property {Class} Characteristics.BatteryLevel
     * @property {Class} Characteristics.Brightness
     * @property {Class} Characteristics.ButtonEvent
-    * @property {Class} Characteristics.CCAEnergyDetectThreshold
-    * @property {Class} Characteristics.CCASignalDetectThreshold
     * @property {Class} Characteristics.CameraOperatingModeIndicator
     * @property {Class} Characteristics.CarbonDioxideDetected
     * @property {Class} Characteristics.CarbonDioxideLevel
@@ -401,15 +413,20 @@ class HapNodeJs {
     * @property {Class} Characteristics.CarbonMonoxideLevel
     * @property {Class} Characteristics.CarbonMonoxidePeakLevel
     * @property {Class} Characteristics.Category
+    * @property {Class} Characteristics.CCAEnergyDetectThreshold
+    * @property {Class} Characteristics.CCASignalDetectThreshold
+    * @property {Class} Characteristics.CharacteristicValueActiveTransitionCount
     * @property {Class} Characteristics.CharacteristicValueTransitionControl
     * @property {Class} Characteristics.ChargingState
     * @property {Class} Characteristics.ClosedCaptions
     * @property {Class} Characteristics.ColorTemperature
+    * @property {Class} Characteristics.ConfigurationState
     * @property {Class} Characteristics.ConfigureBridgedAccessory
     * @property {Class} Characteristics.ConfigureBridgedAccessoryStatus
     * @property {Class} Characteristics.ConfiguredName
     * @property {Class} Characteristics.ContactSensorState
     * @property {Class} Characteristics.CoolingThresholdTemperature
+    * @property {Class} Characteristics.CryptoHash
     * @property {Class} Characteristics.CurrentAirPurifierState
     * @property {Class} Characteristics.CurrentAmbientLightLevel
     * @property {Class} Characteristics.CurrentDoorState
@@ -442,6 +459,9 @@ class HapNodeJs {
     * @property {Class} Characteristics.FilterChangeIndication
     * @property {Class} Characteristics.FilterLifeLevel
     * @property {Class} Characteristics.FirmwareRevision
+    * @property {Class} Characteristics.FirmwareUpdateReadiness
+    * @property {Class} Characteristics.FirmwareUpdateStatus
+    * @property {Class} Characteristics.HardwareFinish
     * @property {Class} Characteristics.HardwareRevision
     * @property {Class} Characteristics.HeartBeat
     * @property {Class} Characteristics.HeatingThresholdTemperature
@@ -452,12 +472,13 @@ class HapNodeJs {
     * @property {Class} Characteristics.Identify
     * @property {Class} Characteristics.ImageMirroring
     * @property {Class} Characteristics.ImageRotation
-    * @property {Class} Characteristics.InUse
     * @property {Class} Characteristics.InputDeviceType
     * @property {Class} Characteristics.InputSourceType
+    * @property {Class} Characteristics.InUse
     * @property {Class} Characteristics.IsConfigured
     * @property {Class} Characteristics.LeakDetected
     * @property {Class} Characteristics.LinkQuality
+    * @property {Class} Characteristics.ListPairings
     * @property {Class} Characteristics.LockControlPoint
     * @property {Class} Characteristics.LockCurrentState
     * @property {Class} Characteristics.LockLastKnownAction
@@ -470,13 +491,18 @@ class HapNodeJs {
     * @property {Class} Characteristics.ManagedNetworkEnable
     * @property {Class} Characteristics.ManuallyDisabled
     * @property {Class} Characteristics.Manufacturer
+    * @property {Class} Characteristics.MaximumTransmitPower
+    * @property {Class} Characteristics.MetricsBufferFullState
     * @property {Class} Characteristics.Model
     * @property {Class} Characteristics.MotionDetected
+    * @property {Class} Characteristics.MultifunctionButton
     * @property {Class} Characteristics.Mute
     * @property {Class} Characteristics.Name
     * @property {Class} Characteristics.NetworkAccessViolationControl
     * @property {Class} Characteristics.NetworkClientProfileControl
     * @property {Class} Characteristics.NetworkClientStatusControl
+    * @property {Class} Characteristics.NFCAccessControlPoint
+    * @property {Class} Characteristics.NFCAccessSupportedConfiguration
     * @property {Class} Characteristics.NightVision
     * @property {Class} Characteristics.NitrogenDioxideDensity
     * @property {Class} Characteristics.ObstructionDetected
@@ -486,22 +512,21 @@ class HapNodeJs {
     * @property {Class} Characteristics.OpticalZoom
     * @property {Class} Characteristics.OutletInUse
     * @property {Class} Characteristics.OzoneDensity
-    * @property {Class} Characteristics.PM10Density
-    * @property {Class} Characteristics.PM2_5Density
+    * @property {Class} Characteristics.PairingFeatures
     * @property {Class} Characteristics.PairSetup
     * @property {Class} Characteristics.PairVerify
-    * @property {Class} Characteristics.PairingFeatures
-    * @property {Class} Characteristics.PairingPairings
     * @property {Class} Characteristics.PasswordSetting
     * @property {Class} Characteristics.PeriodicSnapshotsActive
     * @property {Class} Characteristics.PictureMode
     * @property {Class} Characteristics.Ping
+    * @property {Class} Characteristics.PM10Density
+    * @property {Class} Characteristics.PM2_5Density
     * @property {Class} Characteristics.PositionState
     * @property {Class} Characteristics.PowerModeSelection
     * @property {Class} Characteristics.ProductData
-    * @property {Class} Characteristics.ProgramMode
     * @property {Class} Characteristics.ProgrammableSwitchEvent
     * @property {Class} Characteristics.ProgrammableSwitchOutputState
+    * @property {Class} Characteristics.ProgramMode
     * @property {Class} Characteristics.Reachable
     * @property {Class} Characteristics.ReceivedSignalStrengthIndication
     * @property {Class} Characteristics.ReceiverSensitivity
@@ -523,7 +548,9 @@ class HapNodeJs {
     * @property {Class} Characteristics.SecuritySystemTargetState
     * @property {Class} Characteristics.SelectedAudioStreamConfiguration
     * @property {Class} Characteristics.SelectedCameraRecordingConfiguration
+    * @property {Class} Characteristics.SelectedDiagnosticsModes
     * @property {Class} Characteristics.SelectedRTPStreamConfiguration
+    * @property {Class} Characteristics.SelectedSleepConfiguration
     * @property {Class} Characteristics.SerialNumber
     * @property {Class} Characteristics.ServiceLabelIndex
     * @property {Class} Characteristics.ServiceLabelNamespace
@@ -532,12 +559,19 @@ class HapNodeJs {
     * @property {Class} Characteristics.SetupEndpoints
     * @property {Class} Characteristics.SetupTransferTransport
     * @property {Class} Characteristics.SignalToNoiseRatio
+    * @property {Class} Characteristics.SiriEnable
+    * @property {Class} Characteristics.SiriEndpointSessionStatus
+    * @property {Class} Characteristics.SiriEngineVersion
     * @property {Class} Characteristics.SiriInputType
+    * @property {Class} Characteristics.SiriLightOnUse
+    * @property {Class} Characteristics.SiriListening
+    * @property {Class} Characteristics.SiriTouchToUse
     * @property {Class} Characteristics.SlatType
     * @property {Class} Characteristics.SleepDiscoveryMode
     * @property {Class} Characteristics.SleepInterval
     * @property {Class} Characteristics.SmokeDetected
     * @property {Class} Characteristics.SoftwareRevision
+    * @property {Class} Characteristics.StagedFirmwareVersion
     * @property {Class} Characteristics.StatusActive
     * @property {Class} Characteristics.StatusFault
     * @property {Class} Characteristics.StatusJammed
@@ -545,18 +579,24 @@ class HapNodeJs {
     * @property {Class} Characteristics.StatusTampered
     * @property {Class} Characteristics.StreamingStatus
     * @property {Class} Characteristics.SulphurDioxideDensity
+    * @property {Class} Characteristics.SupportedAssetTypes
     * @property {Class} Characteristics.SupportedAudioRecordingConfiguration
     * @property {Class} Characteristics.SupportedAudioStreamConfiguration
     * @property {Class} Characteristics.SupportedCameraRecordingConfiguration
     * @property {Class} Characteristics.SupportedCharacteristicValueTransitionConfiguration
     * @property {Class} Characteristics.SupportedDataStreamTransportConfiguration
+    * @property {Class} Characteristics.SupportedDiagnosticsModes
     * @property {Class} Characteristics.SupportedDiagnosticsSnapshot
-    * @property {Class} Characteristics.SupportedRTPConfiguration
+    * @property {Class} Characteristics.SupportedFirmwareUpdateConfiguration
+    * @property {Class} Characteristics.SupportedMetrics
     * @property {Class} Characteristics.SupportedRouterConfiguration
+    * @property {Class} Characteristics.SupportedRTPConfiguration
+    * @property {Class} Characteristics.SupportedSleepConfiguration
     * @property {Class} Characteristics.SupportedTransferTransportConfiguration
     * @property {Class} Characteristics.SupportedVideoRecordingConfiguration
     * @property {Class} Characteristics.SupportedVideoStreamConfiguration
     * @property {Class} Characteristics.SwingMode
+    * @property {Class} Characteristics.TapType
     * @property {Class} Characteristics.TargetAirPurifierState
     * @property {Class} Characteristics.TargetAirQuality
     * @property {Class} Characteristics.TargetControlList
@@ -577,28 +617,32 @@ class HapNodeJs {
     * @property {Class} Characteristics.TargetVisibilityState
     * @property {Class} Characteristics.TemperatureDisplayUnits
     * @property {Class} Characteristics.ThirdPartyCameraActive
+    * @property {Class} Characteristics.ThreadControlPoint
+    * @property {Class} Characteristics.ThreadNodeCapabilities
+    * @property {Class} Characteristics.ThreadOpenThreadVersion
+    * @property {Class} Characteristics.ThreadStatus
     * @property {Class} Characteristics.TimeUpdate
+    * @property {Class} Characteristics.Token
     * @property {Class} Characteristics.TransmitPower
-    * @property {Class} Characteristics.TransmitPowerMaximum
     * @property {Class} Characteristics.TunnelConnectionTimeout
     * @property {Class} Characteristics.TunneledAccessoryAdvertising
     * @property {Class} Characteristics.TunneledAccessoryConnected
     * @property {Class} Characteristics.TunneledAccessoryStateNumber
-    * @property {Class} Characteristics.VOCDensity
     * @property {Class} Characteristics.ValveType
     * @property {Class} Characteristics.Version
     * @property {Class} Characteristics.VideoAnalysisActive
+    * @property {Class} Characteristics.VOCDensity
     * @property {Class} Characteristics.Volume
     * @property {Class} Characteristics.VolumeControlType
     * @property {Class} Characteristics.VolumeSelector
+    * @property {Class} Characteristics.WakeConfiguration
     * @property {Class} Characteristics.WANConfigurationList
     * @property {Class} Characteristics.WANStatusList
-    * @property {Class} Characteristics.WakeConfiguration
     * @property {Class} Characteristics.WaterLevel
     * @property {Class} Characteristics.WiFiCapabilities
     * @property {Class} Characteristics.WiFiConfigurationControl
     * @property {Class} Characteristics.WiFiSatelliteStatus
-    * @see https://github.com/homebridge/HAP-NodeJS/blob/master/src/lib/gen
+    * @see https://github.com/homebridge/HAP-NodeJS/blob/master/src/lib/definitions/CharacteristicDefinitions.ts
     */
   static get Characteristics () {}
 }
