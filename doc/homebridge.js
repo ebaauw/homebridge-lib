@@ -1,7 +1,7 @@
 // homebridge-lib/doc/homebridge.js
 //
 // Library for Homebridge plugins.
-// Copyright © 2017-2022 Erik Baauw. All rights reserved.
+// Copyright © 2017-2023 Erik Baauw. All rights reserved.
 
 'use strict'
 
