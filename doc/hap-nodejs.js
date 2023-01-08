@@ -280,7 +280,7 @@ class HapNodeJs {
 
   /** Abstract superclass for a HomeKit service.
     * <br>See {@link Service}.
-    * @type {Class}ex
+    * @type {Class}
     * @memberof module:hap-nodejs
     */
   static get Service () {}
