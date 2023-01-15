@@ -8,6 +8,8 @@
       "README.md",
       "index.js",
       "lib",
+      "lib/ServiceDelegate",
+      "lib/ServiceDelegate/History",
       "doc"
     ]
   },
