@@ -210,6 +210,12 @@ class homebridgeLib {
     */
   static get UpnpClient () { return require('./lib/UpnpClient') }
 
+  // Command-line tools.
+  static get HapTool () { return require('./lib/HapTool') }
+  static get JsonTool () { return require('./lib/JsonTool') }
+  static get SysinfoTool () { return require('./lib/SysinfoTool') }
+  static get UpnpTool () { return require('./lib/UpnpTool') }
+
   /** Resolve after given period, delaying execution.
     *
     * E.g. to delay execution for 1.5 seconds, issue:
