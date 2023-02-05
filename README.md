@@ -44,14 +44,9 @@ This way, `npm` installs Homebridge Lib automatically when installing the actual
 
 To install the command-line tools, use:
 ```
-$ sudo npm -g i homebridge-lib
+$ sudo npm -g i hb-lib-tools
 ```
 This creates symlinks to these tools in `/usr/bin` or `/usr/local/bin` (depending on how you installed NodeJS).
-Note that, when Homebridge Lib is installed like this, Homebridge might issue a warning at startup:
-```
-Plugin /usr/lib/node_modules/homebridge-lib package.json does not contain the keyword 'homebridge-plugin'
-```
-This warning can be ignored safely.
 
 ### Credits
 The logic for handling [Eve](https://www.evehome.com/en/eve-app) history was copied from Simone Tisa's [`fakegato-history`](https://github.com/simont77/fakegato-history) repository, copyright © 2017 simont77.

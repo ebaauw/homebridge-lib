@@ -5,32 +5,7 @@
 
 'use strict'
 
-const chalk = require('chalk')
-const net = require('net')
-
-// Force colors when output is re-directed.
-chalk.enabled = true
-chalk.level = 1
-
-// Check of e is a JavaScript runtime error.
-function isJavaScriptError (e) {
-  return [
-    'AssertionError',
-    'EvalError',
-    'RangeError',
-    'ReferenceError',
-    'SyntaxError',
-    'TypeError',
-    'URIError'
-  ].includes(e.constructor.name)
-}
-
-// Check if e is a NodeJs runtime error.
-function isNodejsError (e) {
-  return typeof e.code === 'string' && e.code.startsWith('ERR_')
-}
-
-const zeroes = '00000000000000000000000000000000'
+const hbLibTools = require('hb-lib-tools')
 
 /** Library for Homebridge plugins.
   * see the {@tutorial homebridgeLib} tutorial.
@@ -41,23 +16,24 @@ const zeroes = '00000000000000000000000000000000'
   * {@link AccessoryDelegate},
   * {@link ServiceDelegate}, and
   * {@link CharacteristicDelegate}.
-  * - A base class to building command-line tools:
+  * - An abstract base class to building command-line tools:
   * {@link CommandLineTool}.
   * - A series of helper classes for building homebridge plugins (of any type)
   * and/or command-line utilities:
   * {@link AdaptiveLighting},
   * {@link Colour},
   * {@link CommandLineParser},
+  * {@link CustomHomeKitTypes},
+  * {@link Delegate},
   * {@link EveHomeKitTypes},
   * {@link HttpClient},
   * {@link JsonFormatter},
   * {@link MyHomeKitTypes},
-  * {@link OptionParser}, and
+  * {@link OptionParser},
+  * {@link PropertyDelegate},
+  * {@link SystemInfo},
+  * {@link UiServer}, and
   * {@link UpnpClient}.
-  * - A series of command-line utilities for troubleshooting Homebridge setups:
-  * `hap`, `json`, `upnp`.
-  * For more information on these, start the tool from the command-line
-  * with `-h` or `--help`.
   *
   * To access the classes provided by Homebridge Lib from your module,
   * simply load it by:
@@ -87,6 +63,13 @@ class homebridgeLib {
     */
   static get AdaptiveLighting () { return require('./lib/AdaptiveLighting') }
 
+  /** Return the `Bonjour` class from [`bonjour-hap`](https://github.com/homebridge/bonjour),
+    * so plugins don't have to list this as a separate dependency.
+    * @type {Class}
+    * @memberof module:homebridgeLib
+    */
+  static get Bonjour () { return hbLibTools.Bonjour }
+
   /** Delegate of a HomeKit characteristic.
     * <br>See {@link CharacteristicDelegate}.
     * @type {Class}
@@ -99,21 +82,21 @@ class homebridgeLib {
     * @type {Class}
     * @memberof module:homebridgeLib
     */
-  static get Colour () { return require('./lib/Colour') }
+  static get Colour () { return hbLibTools.Colour }
 
   /** Parser and validator for command-line arguments.
     * <br>See {@link CommandLineParser}.
     * @type {Class}
     * @memberof module:homebridgeLib
     */
-  static get CommandLineParser () { return require('./lib/CommandLineParser') }
+  static get CommandLineParser () { return hbLibTools.CommandLineParser }
 
   /** Command-line tool.
     * <br>See {@link CommandLineTool}.
     * @type {Class}
     * @memberof module:homebridgeLib
     */
-  static get CommandLineTool () { return require('./lib/CommandLineTool') }
+  static get CommandLineTool () { return hbLibTools.CommandLineTool }
 
   /** Abstract superclass for {@link EveHomeKitTypes}
     * and {@link MyHomeKitTypes}.
@@ -145,14 +128,14 @@ class homebridgeLib {
     * @type {Class}
     * @memberof module:homebridgeLib
     */
-  static get HttpClient () { return require('./lib/HttpClient') }
+  static get HttpClient () { return hbLibTools.HttpClient }
 
   /** JSON formatter.
     * <br>See {@link JsonFormatter}.
     * @type {Class}
     * @memberof module:homebridgeLib
     */
-  static get JsonFormatter () { return require('./lib/JsonFormatter') }
+  static get JsonFormatter () { return hbLibTools.JsonFormatter }
 
   /** My own collection of custom HomeKit services and characteristics.
     * <br>See {@link MyHomeKitTypes}.
@@ -166,7 +149,7 @@ class homebridgeLib {
     * @type {Class}
     * @memberof module:homebridgeLib
     */
-  static get OptionParser () { return require('./lib/OptionParser') }
+  static get OptionParser () { return hbLibTools.OptionParser }
 
   /** Homebridge dynamic platform plugin.
     * <br>See {@link Platform}.
@@ -194,7 +177,14 @@ class homebridgeLib {
     * @type {Class}
     * @memberof module:homebridgeLib
     */
-  static get SystemInfo () { return require('./lib/SystemInfo') }
+  static get SystemInfo () { return hbLibTools.SystemInfo }
+
+  /** Universal Plug and Play client.
+    * <br>See {@link UpnpClient}.
+    * @type {Class}
+    * @memberof module:homebridgeLib
+    */
+  static get UpnpClient () { return hbLibTools.UpnpClient }
 
   /** Server for dynamic configuration settings through Homebridge UI.
     * <br>See {@link UiServer}.
@@ -202,19 +192,6 @@ class homebridgeLib {
     * @memberof module:homebridgeLib
     */
   static get UiServer () { return require('./lib/UiServer') }
-
-  /** Universal Plug and Play client.
-    * <br>See {@link UpnpClient}.
-    * @type {Class}
-    * @memberof module:homebridgeLib
-    */
-  static get UpnpClient () { return require('./lib/UpnpClient') }
-
-  // Command-line tools.
-  static get HapTool () { return require('./lib/HapTool') }
-  static get JsonTool () { return require('./lib/JsonTool') }
-  static get SysinfoTool () { return require('./lib/SysinfoTool') }
-  static get UpnpTool () { return require('./lib/UpnpTool') }
 
   /** Resolve after given period, delaying execution.
     *
@@ -228,12 +205,7 @@ class homebridgeLib {
     * @throws {RangeError} On invalid parameter value.
     * @memberof module:homebridgeLib
     */
-  static async timeout (msec) {
-    msec = homebridgeLib.OptionParser.toInt('msec', msec, 0)
-    return new Promise((resolve, reject) => {
-      setTimeout(() => { resolve() }, msec)
-    })
-  }
+  static get timeout () { return hbLibTools.timeout }
 
   /** Convert Error to string.
     *
@@ -245,48 +217,7 @@ class homebridgeLib {
     * @returns {string} - The error as string.
     * @memberof module:homebridgeLib
     */
-  static formatError (e, useChalk = false) {
-    if (isJavaScriptError(e) || isNodejsError(e)) {
-      if (useChalk) {
-        const lines = e.stack.split('\n')
-        const firstLine = lines.shift()
-        return firstLine + '\n' + chalk.reset.grey(lines.join('\n'))
-      }
-      return e.stack
-    }
-    if (e.errno != null) { // SystemError
-      let label = ''
-      if (e.path != null) {
-        label = e.path
-      } else if (e.dest != null) {
-        label = e.dest
-      } else if (e.address != null) {
-        label = e.address
-        if (net.isIPv6(label)) {
-          label = '[' + label + ']'
-        }
-        if (e.port != null) {
-          label += ':' + e.port
-        }
-      } else if (e.port != null) {
-        label = '' + e.port
-      } else if (e.hostname != null) {
-        label = e.hostname
-      }
-      let message = ''
-      const a = /[A-Z0-9_-]*:( .*),/.exec(e.message)
-      if (a != null && a[1] != null) {
-        message = a[1]
-      }
-      if (label != null && message != null) {
-        return `${label}: cannot ${e.syscall}: ${e.code}${message}`
-      }
-    }
-    if (e.cmd != null && e.message.slice(-1) === '\n') { // exec error
-      return e.message.slice(0, e.message.length - 1)
-    }
-    return e.message
-  }
+  static get formatError () { return hbLibTools.formatError }
 
   /** Convert integer to hex string.
     * @param {integer} i - The integer.
@@ -294,14 +225,19 @@ class homebridgeLib {
     * @returns {string} - The hex string.
     * @memberof module:homebridgeLib
     */
-  static toHexString (i, length = 4) {
-    return (zeroes + i.toString(16)).slice(-length).toUpperCase()
-  }
+  static get toHexString () { return hbLibTools.toHexString }
 
-  /** Return the `semver` library, so plugins don't have to list this as a
-    * separate dependency.
+  /** Return the [`chalk`](https://github.com/chalk/chalk) module,
+    * so plugins don't have to list this as a separate dependency.
+    * @memberof module:homebridgeLib
     */
-  static get semver () { return require('semver') }
+  static get chalk () { return hbLibTools.chalk }
+
+  /** Return the [`semver`](https://github.com/npm/node-semver) module,
+    * so plugins don't have to list this as a separate dependency.
+    * @memberof module:homebridgeLib
+    */
+  static get semver () { return hbLibTools.semver }
 }
 
 module.exports = homebridgeLib

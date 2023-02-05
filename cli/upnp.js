@@ -9,6 +9,6 @@
 
 'use strict'
 
-const { UpnpTool } = require('../index')
+const { UpnpTool } = require('hb-lib-tools')
 
-new UpnpTool().main()
+new UpnpTool(require('../package.json')).main()

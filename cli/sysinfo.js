@@ -9,6 +9,6 @@
 
 'use strict'
 
-const { SysinfoTool } = require('../index')
+const { SysinfoTool } = require('hb-lib-tools')
 
-new SysinfoTool().main()
+new SysinfoTool(require('../package.json')).main()

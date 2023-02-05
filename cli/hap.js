@@ -9,6 +9,6 @@
 
 'use strict'
 
-const { HapTool } = require('../index')
+const { HapTool } = require('hb-lib-tools')
 
-new HapTool().main()
+new HapTool(require('../package.json')).main()

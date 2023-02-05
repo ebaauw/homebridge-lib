@@ -9,6 +9,6 @@
 
 'use strict'
 
-const { JsonTool } = require('../index')
+const { JsonTool } = require('hb-lib-tools')
 
-new JsonTool().main()
+new JsonTool(require('../package.json')).main()

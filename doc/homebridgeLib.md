@@ -23,6 +23,7 @@ Class                          | Description
 {@link ServiceDelegate}        | Delegate of a HomeKit service.
 {@link CharacteristicDelegate} | Delegate of a HomeKit characteristic.
 {@link Delegate}               | Abstract superclass for {@link Platform}, {@link AccessoryDelegate}, {@link ServiceDelegate}, and {@link CharacteristicDelegate}.
+{@link PropertyDelegate}       | Delegate of a persisted property.
 
 These delegate classes provide the following functionality:
 - Saving and restoring accessories from persistent storage between Homebridge sessions (using the Homebridge dynamic platform API);
@@ -34,7 +35,7 @@ These delegate classes provide the following functionality:
 - Checking the latest plugin version published to the NPM registry.
 
 A Homebridge plugin based on Homebridge Lib extends these classes, providing the device-specific logic.
-See [`homebridge-ws`](https://github.com/ebaauw/homebridge-ws) for an example plugin based on Homebridge Lib.
+See [Homebridge WS](https://github.com/ebaauw/homebridge-ws) for an example plugin based on Homebridge Lib.
 
 ### API Wrapper
 The Homebridge Lib library provides a wrapper around the remaining Homebride and [HAP-NodeJS](https://github.com/KhaosT/HAP-NodeJS) APIs, that cannot be hidden by the abstract superclasses.
@@ -48,11 +49,12 @@ Class       | Description
 ### Command-Line Utilities
 The Homebridge Lib library comes with a number of command-line tools for troubleshooting Homebridge installations.
 
-Tool    | Description
-------- | -----------
-`hap`   | Logger for HomeKit accessory announcements.
-`json`  | JSON formatter.
-`upnp`  | Logger for UPnP device announcements.
+Tool      | Description
+--------- | -----------
+`hap`     | Logger for HomeKit accessory announcements.
+`json`    | JSON formatter.
+`sysinfo` | Print hardware and operating system information.
+`upnp`    | Logger for UPnP device announcements.
 
 Each command-line tool takes a `-h` or `--help` argument to provide a brief overview of its functionality and command-line arguments.
 
@@ -71,4 +73,5 @@ Class                      | Description
 {@link JsonFormatter}      | JSON formatter.
 {@link MyHomeKitTypes}     | My own collection of custom HomeKit Services and Characteristics.
 {@link OptionParser}       | Parser and validator for options and other parameters.
+{@link UiServer}           | Server for handling Homebridge Plugin UI requests.
 {@link UpnpClient}         | Universal Plug and Play client.
