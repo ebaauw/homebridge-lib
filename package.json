@@ -21,12 +21,12 @@
     "upnp": "cli/upnp.js"
   },
   "engines": {
-    "homebridge": "^1.6.0",
+    "homebridge": "^1.6.1",
     "node": "^18.16.0"
   },
   "dependencies": {
     "@homebridge/plugin-ui-utils": "~0.0.19",
-    "hb-lib-tools": "^1.0.7"
+    "hb-lib-tools": "^1.0.8"
   },
   "scripts": {
     "prepare": "standard && rm -rf out && jsdoc -c jsdoc.json",
