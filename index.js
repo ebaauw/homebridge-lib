@@ -247,7 +247,6 @@ class homebridgeLib {
     * @memberof module:hbLibTools
     */
   static get recommendedNodeVersion () { return hbLibTools.recommendedNodeVersion }
-
 }
 
 module.exports = homebridgeLib
