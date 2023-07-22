@@ -238,6 +238,16 @@ class homebridgeLib {
     * @memberof module:homebridgeLib
     */
   static get semver () { return hbLibTools.semver }
+
+  /** Return the recommended version of NodeJS from package.json.
+    * This is the version used to develop and test the software,
+    * typically the latest LTS version.
+    * @param {string} packageJson - The contents of package.json
+    * #return {string} - The recommended version.
+    * @memberof module:hbLibTools
+    */
+  static get recommendedNodeVersion () { return hbLibTools.recommendedNodeVersion }
+
 }
 
 module.exports = homebridgeLib
