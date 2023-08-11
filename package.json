@@ -22,11 +22,11 @@
   },
   "engines": {
     "homebridge": "^1.6.1",
-    "node": "18.17.0||^18||^16"
+    "node": "18.17.1||^18||^16"
   },
   "dependencies": {
     "@homebridge/plugin-ui-utils": "~0.0.19",
-    "hb-lib-tools": "~1.0.11"
+    "hb-lib-tools": "~1.0.12"
   },
   "scripts": {
     "prepare": "standard && rm -rf out && jsdoc -c jsdoc.json",
