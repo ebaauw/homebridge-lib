@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@homebridge/plugin-ui-utils": "~1.0.0",
-    "hb-lib-tools": "~1.1.4"
+    "hb-lib-tools": "~1.2.0"
   },
   "scripts": {
     "prepare": "standard && rm -rf out && jsdoc -c jsdoc.json",
