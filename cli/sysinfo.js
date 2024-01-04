@@ -3,7 +3,7 @@
 // homebridge-lib/cli/sysinfo.js
 //
 // Library for Homebridge plugins.
-// Copyright © 2021-2023 Erik Baauw. All rights reserved.
+// Copyright © 2021-2024 Erik Baauw. All rights reserved.
 //
 // Show system info.
 
