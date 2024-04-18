@@ -8,6 +8,7 @@
     "homekit",
     "homebridge"
   ],
+  "type": "module",
   "main": "index.js",
   "files": [
     "index.js",
@@ -22,11 +23,11 @@
   },
   "engines": {
     "homebridge": "^1.7.0",
-    "node": "20.12.0||^20||^18"
+    "node": "20.12.2||^20||^18"
   },
   "dependencies": {
-    "@homebridge/plugin-ui-utils": "~1.0.1",
-    "hb-lib-tools": "~1.2.4"
+    "@homebridge/plugin-ui-utils": "~1.0.3",
+    "hb-lib-tools": "~2.0.0-0"
   },
   "scripts": {
     "prepare": "standard && rm -rf out && jsdoc -c jsdoc.json",
