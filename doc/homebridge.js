@@ -3,8 +3,6 @@
 // Library for Homebridge plugins.
 // Copyright © 2017-2024 Erik Baauw. All rights reserved.
 
-'use strict'
-
 /* eslint-disable */
 
 // Following "code" is just for generating documentation references for the

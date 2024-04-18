@@ -7,8 +7,6 @@
 //
 // JSON formatter.
 
-'use strict'
+import { JsonTool } from 'hb-lib-tools'
 
-const { JsonTool } = require('hb-lib-tools')
-
-new JsonTool(require('../package.json')).main()
+new JsonTool(import.meta.dirname).main()

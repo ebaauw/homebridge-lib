@@ -7,8 +7,6 @@
 //
 // Show system info.
 
-'use strict'
+import { SysinfoTool } from 'hb-lib-tools'
 
-const { SysinfoTool } = require('hb-lib-tools')
-
-new SysinfoTool(require('../package.json')).main()
+new SysinfoTool(import.meta.dirname).main()

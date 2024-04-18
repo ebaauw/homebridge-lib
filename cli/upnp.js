@@ -7,8 +7,6 @@
 //
 // Logger for UPnP device announcements.
 
-'use strict'
+import { UpnpTool } from 'hb-lib-tools'
 
-const { UpnpTool } = require('hb-lib-tools')
-
-new UpnpTool(require('../package.json')).main()
+new UpnpTool(import.meta.dirname).main()
