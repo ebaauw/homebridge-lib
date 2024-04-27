@@ -9,6 +9,7 @@
       "index.js",
       "lib",
       "lib/ServiceDelegate",
+      "node_modules/hb-lib-tools/index.js",
       "node_modules/hb-lib-tools/lib",
       "doc"
     ]
