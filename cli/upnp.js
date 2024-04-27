@@ -7,6 +7,11 @@
 //
 // Logger for UPnP device announcements.
 
-import { UpnpTool } from 'hb-lib-tools'
+import { createRequire } from 'node:module'
 
-new UpnpTool(import.meta.dirname).main()
+import { UpnpTool } from 'hb-lib-tools/UpnpTool'
+
+const require = createRequire(import.meta.url)
+const packageJson = require('../package.json')
+
+new UpnpTool(packageJson).main()

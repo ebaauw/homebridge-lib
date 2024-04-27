@@ -7,6 +7,11 @@
 //
 // JSON formatter.
 
-import { JsonTool } from 'hb-lib-tools'
+import { createRequire } from 'node:module'
 
-new JsonTool(import.meta.dirname).main()
+import { JsonTool } from 'hb-lib-tools/JsonTool'
+
+const require = createRequire(import.meta.url)
+const packageJson = require('../package.json')
+
+new JsonTool(packageJson).main()

@@ -7,6 +7,11 @@
 //
 // Logger for HomeKit accessory announcements.
 
-import { HapTool } from 'hb-lib-tools'
+import { createRequire } from 'node:module'
 
-new HapTool(import.meta.dirname).main()
+import { HapTool } from 'hb-lib-tools/HapTool'
+
+const require = createRequire(import.meta.url)
+const packageJson = require('../package.json')
+
+new HapTool(packageJson).main()

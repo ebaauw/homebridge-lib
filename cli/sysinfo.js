@@ -7,6 +7,11 @@
 //
 // Show system info.
 
-import { SysinfoTool } from 'hb-lib-tools'
+import { createRequire } from 'node:module'
 
-new SysinfoTool(import.meta.dirname).main()
+import { SysinfoTool } from 'hb-lib-tools/SysinfoTool'
+
+const require = createRequire(import.meta.url)
+const packageJson = require('../package.json')
+
+new SysinfoTool(packageJson).main()
