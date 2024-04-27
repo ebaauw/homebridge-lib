@@ -10,6 +10,10 @@
   ],
   "type": "module",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./*": "./lib/*.js"
+  },
   "files": [
     "index.js",
     "lib",
@@ -22,12 +26,12 @@
     "upnp": "cli/upnp.js"
   },
   "engines": {
-    "homebridge": "^1.7.0",
+    "homebridge": "^1.8.1",
     "node": "20.12.2||^20||^18"
   },
   "dependencies": {
     "@homebridge/plugin-ui-utils": "~1.0.3",
-    "hb-lib-tools": "~2.0.0-0"
+    "hb-lib-tools": "~2.0.0-2"
   },
   "scripts": {
     "prepare": "standard && rm -rf out && jsdoc -c jsdoc.json",
