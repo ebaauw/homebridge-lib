@@ -26,7 +26,7 @@
     "upnp": "cli/upnp.js"
   },
   "engines": {
-    "homebridge": "^1.8.1",
+    "homebridge": "^1.8.2",
     "node": "20.14.0||^20||^18"
   },
   "dependencies": {
