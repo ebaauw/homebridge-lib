@@ -3,7 +3,7 @@
 // homebridge-lib/cli/hap.js
 //
 // Library for Homebridge plugins.
-// Copyright © 2018-2024 Erik Baauw. All rights reserved.
+// Copyright © 2018-2025 Erik Baauw. All rights reserved.
 //
 // Logger for HomeKit accessory announcements.
 

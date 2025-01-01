@@ -1,7 +1,7 @@
 // homebridge-lib/index.js
 //
 // Library for Homebridge plugins.
-// Copyright © 2017-2024 Erik Baauw. All rights reserved.
+// Copyright © 2017-2025 Erik Baauw. All rights reserved.
 
 /** Library for Homebridge plugins.
   * see the {@tutorial homebridge-lib} tutorial.
