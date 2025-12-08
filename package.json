@@ -33,7 +33,7 @@
     "node": "24.11.1||^24||^22||^20"
   },
   "dependencies": {
-    "@homebridge/plugin-ui-utils": "~2.1.1",
+    "@homebridge/plugin-ui-utils": "~2.1.2",
     "hb-lib-tools": "~2.2.14"
   },
   "scripts": {
