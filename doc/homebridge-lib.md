@@ -1,4 +1,4 @@
-Copyright © 2017-2025 Erik Baauw. All rights reserved.
+Copyright © 2017-2026 Erik Baauw. All rights reserved.
 
 ## Introduction
 While developing a number of [Homebridge](https://github.com/nfarina/homebridge) plugins, I find myself duplicating a lot of code.

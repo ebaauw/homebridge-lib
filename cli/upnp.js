@@ -3,7 +3,7 @@
 // homebridge-lib/cli/upnp.js
 //
 // Library for Homebridge plugins.
-// Copyright © 2018-2025 Erik Baauw. All rights reserved.
+// Copyright © 2018-2026 Erik Baauw. All rights reserved.
 //
 // Logger for UPnP device announcements.
 
