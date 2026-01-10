@@ -30,7 +30,7 @@
   },
   "engines": {
     "homebridge": "^1.11.1||^2.0.0-beta",
-    "node": "24.11.1||^24||^22||^20"
+    "node": "24.12.0||^24||^22||^20"
   },
   "dependencies": {
     "@homebridge/plugin-ui-utils": "~2.1.2",
