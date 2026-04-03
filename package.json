@@ -29,12 +29,12 @@
     "upnp": "cli/upnp.js"
   },
   "engines": {
-    "homebridge": "^1.11.3||^2.0.0-beta",
+    "homebridge": "^1.11.4||^2.0.0-beta",
     "node": "24.14.1||^24||^22||^20"
   },
   "dependencies": {
-    "@homebridge/plugin-ui-utils": "~2.2.2",
-    "hb-lib-tools": "~2.2.18"
+    "@homebridge/plugin-ui-utils": "~2.2.3",
+    "hb-lib-tools": "~3.0.0-0"
   },
   "scripts": {
     "prepare": "standard && rm -rf out && jsdoc -c jsdoc.json",
