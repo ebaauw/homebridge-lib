@@ -65,7 +65,6 @@ Class                      | Description
 -------------------------- | -----------
 {@link AdaptiveLighting}   | Adaptive Lighting.
 {@link Colour}             | Colour conversions.
-{@link CommandLineParser}  | Parser and validator for command-line arguments.
 {@link CommandLineTool}    | Command-line tool.
 {@link CustomHomeKitTypes} | Abstract superclass for {@link EveHomeKitTypes} and {@link MyHomeKitTypes}.
 {@link EveHomeKitTypes}    | Custom HomeKit Services and Characteristic used by [Eve](https://www.evehome.com/en) accessories and by the [Eve app](https://www.evehome.com/en/eve-app).
