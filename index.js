@@ -18,7 +18,6 @@
   * and/or command-line utilities:
   * {@link AdaptiveLighting},
   * {@link Colour},
-  * {@link CommandLineParser},
   * {@link CustomHomeKitTypes},
   * {@link Delegate},
   * {@link EveHomeKitTypes},
